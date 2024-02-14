@@ -4,8 +4,8 @@ import { Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <div className=" w-[100%] h-[300px] flex gap-2">
-      <div className=" w-[400px] h-[100%] flex flex-col gap-5 items-center justify-center text-start p-3">
+    <div className=" w-[100%] h-[100%] flex gap-2">
+      <div className=" w-[400px] h-[100%] flex flex-col gap-5 items-center justify-center text-start p-5">
         <h2 className="text-2xl font-Inter font-light">VIBRA.</h2>
         <p className="font-medium font-Inter">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam harum

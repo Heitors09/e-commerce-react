@@ -1,13 +1,13 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronRight } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
-
 import { useCallback } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 export function EmblaCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel();
-
-  console.log(emblaApi);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 5000 }),
+  ]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
