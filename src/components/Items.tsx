@@ -7,7 +7,7 @@ export function Items() {
   return (
     <>
       <h1 className="font-Inter font-light text-4xl mt-9">Releases</h1>
-      <div className=" w-[1225px] h-[400px] flex flex-wrap gap-2 mt-2">
+      <div className=" w-[1225px] h-[400px] flex flex-wrap gap-2 mt-4">
         <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
           <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
           <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />

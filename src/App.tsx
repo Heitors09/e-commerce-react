@@ -4,6 +4,8 @@ import { Descriptions } from "./components/Descriptions";
 import { Navbar } from "./components/navbar";
 import { Sections } from "./components/Sections";
 import { Items } from "./components/Items";
+import { Newsletter } from "./components/Newsletter";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Sections />
         <Descriptions />
         <Items />
+        <Newsletter />
+        <Footer />
       </div>
     </>
   );

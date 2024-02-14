@@ -23,7 +23,7 @@ export function EmblaCarousel() {
         <div className="flex">
           <div className=" shrink-0 basis-full flex gap-5 bg-stone-50">
             <img
-              src="https://i.pinimg.com/564x/fb/d5/ec/fbd5eca24b28beea96359eeea6b2f10a.jpg"
+              src="https://i.pinimg.com/564x/a7/1e/64/a71e64ebc036a79f11714c1f34afe79f.jpg"
               alt=""
             />
             <div className="flex flex-col gap-12 mt-[300px] ">
