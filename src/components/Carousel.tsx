@@ -2,7 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronRight } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
 
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 export function EmblaCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel();
