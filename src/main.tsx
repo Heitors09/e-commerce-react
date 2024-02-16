@@ -7,6 +7,8 @@ import { Summer } from "./components/Pages/Summer.tsx";
 import { Autumn } from "./components/Pages/Autumn.tsx";
 import { Loungewear } from "./components/Pages/Loungewear.tsx";
 import { Lightjackets } from "./components/Pages/Lightjackets.tsx";
+import { Jeans } from "./components/Pages/Jeans.tsx";
+import { Dresses } from "./components/Pages/Dresses.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
   {
     path: "/light-jackets",
     element: <Lightjackets />,
+  },
+  {
+    path: "/jeans",
+    element: <Jeans />,
+  },
+  {
+    path: "/dresses",
+    element: <Dresses />,
   },
 ]);
 

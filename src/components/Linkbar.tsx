@@ -26,9 +26,9 @@ export function Linkbar() {
           </Link>
         </li>
         <li>
-          <a href="" className="hover:underline">
+          <Link to="/jeans" className="hover:underline">
             Jeans
-          </a>
+          </Link>
         </li>
         <li>
           <Link to="/loungewear" className="hover:underline">
@@ -36,9 +36,9 @@ export function Linkbar() {
           </Link>
         </li>
         <li>
-          <a href="" className="hover:underline">
+          <Link to="/dresses" className="hover:underline">
             Dresses
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

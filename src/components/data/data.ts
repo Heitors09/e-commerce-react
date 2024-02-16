@@ -5,7 +5,7 @@ export const summerCollection = [
     Name: "Shirt",
     id: uuidv4(),
     url: "https://i.pinimg.com/564x/48/76/f6/4876f67423cc9987ce58c58b8fdd976b.jpg",
-    price: "20",
+    price: 20,
   },
   {
     Name: "Shirt",
@@ -23,7 +23,7 @@ export const summerCollection = [
     Name: "Shirt",
     id: uuidv4(),
     url: "https://i.pinimg.com/564x/48/76/f6/4876f67423cc9987ce58c58b8fdd976b.jpg",
-    price: "20",
+    price: 20,
   },
   {
     Name: "Shirt",
@@ -41,7 +41,7 @@ export const summerCollection = [
     Name: "Shirt",
     id: uuidv4(),
     url: "https://i.pinimg.com/564x/48/76/f6/4876f67423cc9987ce58c58b8fdd976b.jpg",
-    price: "20",
+    price: 20,
   },
   {
     Name: "Shirt",
@@ -59,7 +59,7 @@ export const summerCollection = [
     Name: "Shirt",
     id: uuidv4(),
     url: "https://i.pinimg.com/564x/48/76/f6/4876f67423cc9987ce58c58b8fdd976b.jpg",
-    price: "20",
+    price: 20,
   },
   {
     Name: "Shirt",

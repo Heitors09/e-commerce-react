@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function Descriptions() {
   return (
     <div className="flex  w-[100%] items-center justify-between">
@@ -11,9 +13,12 @@ export function Descriptions() {
             your style, combine your dresses
           </p>
         </div>
-        <button className="font-Inter w-[150px] h-[50px] bg-white font-light group-hover:-translate-y-3 duration-200 hover:bg-slate-900 hover:text-white ">
+        <Link
+          to="/dresses"
+          className="font-Inter w-[150px] h-[50px] bg-white font-light group-hover:-translate-y-3 duration-200 hover:bg-slate-900 hover:text-white flex justify-center items-center"
+        >
           SHOP NOW
-        </button>
+        </Link>
       </div>
       <div className="bg-jeans bg-no-repeat bg-cover bg-center w-[50%] h-[500px] flex flex-col items-center justify-center gap-10 group hover:cursor-pointer hover:scale-105 duration-200 hover:drop-shadow-md">
         <h2 className="font-Inter font-medium text-4xl text-white">
@@ -25,9 +30,12 @@ export function Descriptions() {
             your style, combine your dresses
           </p>
         </div>
-        <button className="font-Inter w-[150px] h-[50px] bg-white font-light group-hover:-translate-y-3 duration-200 hover:bg-slate-900 hover:text-white">
+        <Link
+          to="/jeans"
+          className="font-Inter w-[150px] h-[50px] bg-white font-light group-hover:-translate-y-3 duration-200 hover:bg-slate-900 hover:text-white flex justify-center items-center"
+        >
           SHOP NOW
-        </button>
+        </Link>
       </div>
     </div>
   );

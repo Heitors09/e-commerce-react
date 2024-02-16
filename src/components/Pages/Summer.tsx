@@ -1,7 +1,6 @@
 import { summerCollection } from "../data/data";
 import { Navbar } from "../navbar";
 import { ShoppingCart } from "lucide-react";
-
 import { Linkbar } from "../Linkbar";
 
 export function Summer() {
@@ -9,8 +8,15 @@ export function Summer() {
     <div className="flex flex-col items-center">
       <Navbar />
 
-      <h1 className="font-inter font-light text-6xl text-white   bg-summer bg-no-repeat bg-center bg-cover w-[100%] h-[200px] flex items-center justify-center">
+      <h1 className="font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px] items-center justify-center relative flex flex-col">
         Summer Sale
+        <div className="bg-yellow-200 w-[200px] h-[200px] rounded-full right-80 -z-10 absolute"></div>
+        <p className="text-xl">the best summer collection</p>
+        <img
+          src="https://i.pinimg.com/564x/a7/1e/64/a71e64ebc036a79f11714c1f34afe79f.jpg"
+          alt=""
+          className="w-[100px] h-[140px] absolute right-80 rounded-md"
+        />
       </h1>
       <Linkbar />
       <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
