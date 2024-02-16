@@ -1,21 +1,22 @@
-import { summerCollection } from "../data/data";
+import { Linkbar } from "../Linkbar";
 import { Navbar } from "../navbar";
+import { autumnCollection } from "../data/data";
 import { ShoppingCart } from "lucide-react";
 
-import { Linkbar } from "../Linkbar";
-
-export function Summer() {
+export function Autumn() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-auto">
       <Navbar />
-
       <h1 className="font-inter font-light text-6xl text-white   bg-summer bg-no-repeat bg-center bg-cover w-[100%] h-[200px] flex items-center justify-center">
-        Summer Sale
+        Autumn collection
       </h1>
       <Linkbar />
       <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
-        {summerCollection.map((clothes) => (
-          <div key={clothes.id} className="relative flex font-Inter font-light">
+        {autumnCollection.map((clothes) => (
+          <div
+            key={clothes.id}
+            className="relative flex font-Inter font-light mt-4"
+          >
             <img
               src={clothes.url}
               className="w-[300px] h-[500px] duration-150 hover:scale-105"

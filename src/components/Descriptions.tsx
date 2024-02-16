@@ -1,7 +1,7 @@
 export function Descriptions() {
   return (
-    <div className="flex gap-6 m-1">
-      <div className="bg-dresses w-[600px] bg-no-repeat bg-cover bg-center h-[500px] flex flex-col items-center justify-center gap-10 group hover:cursor-pointer hover:scale-105 duration-200 hover:drop-shadow-md">
+    <div className="flex  w-[100%] items-center justify-between">
+      <div className="bg-dresses w-[50%] bg-no-repeat bg-cover bg-center h-[500px] flex flex-col items-center justify-center gap-10 group hover:cursor-pointer hover:scale-105 duration-200 hover:drop-shadow-md">
         <h2 className="font-Inter font-medium text-4xl text-white  ">
           NEW DRESSES
         </h2>
@@ -15,7 +15,7 @@ export function Descriptions() {
           SHOP NOW
         </button>
       </div>
-      <div className="bg-jeans bg-no-repeat bg-cover bg-center w-[600px] h-[500px] flex flex-col items-center justify-center gap-10 group hover:cursor-pointer hover:scale-105 duration-200 hover:drop-shadow-md">
+      <div className="bg-jeans bg-no-repeat bg-cover bg-center w-[50%] h-[500px] flex flex-col items-center justify-center gap-10 group hover:cursor-pointer hover:scale-105 duration-200 hover:drop-shadow-md">
         <h2 className="font-Inter font-medium text-4xl text-white">
           THE PERFECT JEANS!
         </h2>

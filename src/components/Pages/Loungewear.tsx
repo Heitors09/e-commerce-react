@@ -1,16 +1,15 @@
-import { summerCollection } from "../data/data";
 import { Navbar } from "../navbar";
-import { ShoppingCart } from "lucide-react";
-
 import { Linkbar } from "../Linkbar";
+import { ShoppingCart } from "lucide-react";
+import { summerCollection } from "../data/data";
 
-export function Summer() {
+export function Loungewear() {
   return (
     <div className="flex flex-col items-center">
       <Navbar />
 
-      <h1 className="font-inter font-light text-6xl text-white   bg-summer bg-no-repeat bg-center bg-cover w-[100%] h-[200px] flex items-center justify-center">
-        Summer Sale
+      <h1 className="font-inter font-light text-6xl text-white   bg-louge bg-no-repeat bg-center bg-cover w-[100%] h-[200px] flex items-center justify-center">
+        Loungewear
       </h1>
       <Linkbar />
       <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">

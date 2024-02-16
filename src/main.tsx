@@ -4,6 +4,9 @@ import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Summer } from "./components/Pages/Summer.tsx";
+import { Autumn } from "./components/Pages/Autumn.tsx";
+import { Loungewear } from "./components/Pages/Loungewear.tsx";
+import { Lightjackets } from "./components/Pages/Lightjackets.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +16,18 @@ const router = createBrowserRouter([
   {
     path: "/summer-collection",
     element: <Summer />,
+  },
+  {
+    path: "/autumn-collection",
+    element: <Autumn />,
+  },
+  {
+    path: "/loungewear",
+    element: <Loungewear />,
+  },
+  {
+    path: "/light-jackets",
+    element: <Lightjackets />,
   },
 ]);
 

@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { Link } from "react-router-dom";
 
 import { ShoppingCart } from "lucide-react";
 
@@ -45,7 +46,9 @@ export function Navbar() {
         </div>
       </div>
       <div className="flex gap-1 text-slate-900 font-Inter mr-[120px]">
-        <p className="text-xl">VIBRA.</p>
+        <Link to="/" className="text-xl">
+          VIBRA.
+        </Link>
       </div>
       <div className="font-Inter text-slate-900  flex gap-5">
         <a href="">Register</a>

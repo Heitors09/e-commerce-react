@@ -58,10 +58,13 @@ export function EmblaCarousel() {
               <p className="tracking-wide font-Inter font-light text-xl relative">
                 DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS
               </p>
-              <button className=" hover:bg-slate-900 duration-200 hover:text-white border-2 border-solid  border-slate-700 w-[150px] h-[50px] font-Inter font-extralight flex items-center justify-center relative">
+              <Link
+                to="/autumn-collection"
+                className=" hover:bg-slate-900 duration-200 hover:text-white border-2 border-solid  border-slate-700 w-[150px] h-[50px] font-Inter font-extralight flex items-center justify-center relative"
+              >
                 Shop Now
                 <ChevronRight className="font-light size-4" />
-              </button>
+              </Link>
             </div>
           </div>
           <div className=" shrink-0 basis-full flex gap-5 bg-stone-50">
@@ -77,10 +80,13 @@ export function EmblaCarousel() {
               <p className="tracking-wide font-Inter font-light text-xl relative">
                 DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS
               </p>
-              <button className=" hover:bg-slate-900 duration-200 hover:text-white border-2 border-solid  border-slate-700 w-[150px] h-[50px] font-Inter font-extralight flex items-center justify-center relative">
+              <Link
+                to="/loungewear"
+                className=" hover:bg-slate-900 duration-200 hover:text-white border-2 border-solid  border-slate-700 w-[150px] h-[50px] font-Inter font-extralight flex items-center justify-center relative"
+              >
                 Shop Now
                 <ChevronRight className="font-light size-4" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 export function Sections() {
   return (
-    <div className="flex gap-3 mt-7  ">
-      <div className="bg-shirtStyle bg-center h-[500px] w-[400px] flex flex-col items-center justify-center gap-12 cursor-pointer group">
+    <div className="flex   w-[100%] items-center justify-between">
+      <div className="bg-shirtStyle bg-center h-[500px] w-[500px] flex flex-col items-center justify-center gap-12 cursor-pointer group">
         <h2
           className="font-Inter font-bold text-5xl text-white group-hover:-translate-y-5 duration-200
         "
@@ -12,7 +12,7 @@ export function Sections() {
           Shop Now
         </button>
       </div>
-      <div className="bg-louge  h-[500px] w-[400px] flex flex-col items-center justify-center gap-12 hover:cursor-pointer group">
+      <div className="bg-louge  h-[500px] w-[500px] flex flex-col items-center justify-center gap-12 hover:cursor-pointer group">
         <h2 className="font-Inter font-bold text-5xl text-white group-hover:-translate-y-5 duration-200">
           LOUNGEWEAR
         </h2>
@@ -20,7 +20,7 @@ export function Sections() {
           Shop Now
         </button>
       </div>
-      <div className="bg-jacket bg-center h-[500px] w-[400px] flex flex-col items-center justify-center gap-12 hover:cursor-pointer group">
+      <div className="bg-jacket bg-center h-[500px] w-[500px] flex flex-col items-center justify-center gap-12 hover:cursor-pointer group">
         <h2
           className="font-Inter font-bold text-5xl text-white group-hover:-translate-y-5 duration-200
         "
