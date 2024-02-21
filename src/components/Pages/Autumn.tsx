@@ -22,14 +22,14 @@ export function Autumn() {
         {autumnCollection.map((clothes) => (
           <div
             key={clothes.id}
-            className="relative flex font-Inter font-light mt-4"
+            className="relative flex font-Inter font-light mt-4 group mb-3 "
           >
             <img
               src={clothes.url}
-              className="w-[300px] h-[500px] duration-150 hover:scale-105"
+              className="w-[300px] h-[400px] duration-150 hover:scale-105 rounded-md"
             />
 
-            <button className="absolute bottom-10 left-5 h-12 w-auto p-2 flex gap-1 text-xl ring-1 ring-black rounded-full items-center justify-center hover:scale-110 duration-150">
+            <button className="absolute bottom-5 left-5 h-12 w-auto p-2 flex gap-1 text-xl ring-1 ring-black rounded-full items-center justify-center hover:scale-110 duration-150">
               <ShoppingCart className="size-5" />
               <footer className=" rounded-full h-9 p-1 ">
                 ${clothes.price}

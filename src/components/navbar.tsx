@@ -7,7 +7,7 @@ import { ShoppingCart } from "lucide-react";
 
 export function Navbar() {
   return (
-    <div className="w-[100%] bg-white h-[75px]  flex gap-5 p-5 items-center justify-between font-light">
+    <div className="w-[100%] bg-white h-[75px]  flex gap-5 p-5 items-center justify-between font-light drop-shadow-md">
       <div className="flex items-center gap-3">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
@@ -52,8 +52,7 @@ export function Navbar() {
       </div>
       <div className="font-Inter text-slate-900  flex gap-5">
         <a href="">Register</a>
-        <a href="">Sign in</a>
-
+        <a href="">Login</a>
         <button>
           <ShoppingCart className="text-slate-900" />
         </button>

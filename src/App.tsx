@@ -1,6 +1,6 @@
 import "./App.css";
 import { EmblaCarousel } from "./components/Carousel";
-import { Descriptions } from "./components/Descriptions";
+import { DressCarousel } from "./components/DressCarousel";
 import { Navbar } from "./components/navbar";
 import { Sections } from "./components/Sections";
 import { Items } from "./components/Items";
@@ -10,7 +10,7 @@ import { Linkbar } from "./components/Linkbar";
 function App() {
   return (
     <>
-      <h2 className="bg-stone-100 font-Inter font-light text-black flex justify-center">
+      <h2 className="bg-slate-900 font-Inter font-light text-white flex justify-center">
         DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS
       </h2>
       <Navbar />
@@ -18,8 +18,11 @@ function App() {
       <EmblaCarousel />
       <div className="flex flex-col items-center">
         <Sections />
-        <Descriptions />
         <Items />
+        <h1 className="w-[90%] text-white h-72 bg-banner bg-center mt-12 font-Inter font-light text-6xl pt-14 pl-[135px]">
+          Promotions
+        </h1>
+        <DressCarousel />
         <Newsletter />
       </div>
     </>

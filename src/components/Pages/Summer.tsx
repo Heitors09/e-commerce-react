@@ -21,10 +21,13 @@ export function Summer() {
       <Linkbar />
       <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
         {summerCollection.map((clothes) => (
-          <div key={clothes.id} className="relative flex font-Inter font-light">
+          <div
+            key={clothes.id}
+            className="relative flex font-Inter font-light group mt-4"
+          >
             <img
               src={clothes.url}
-              className="w-[300px] h-[500px] duration-150 hover:scale-105"
+              className="w-[300px] h-[400px] duration-150 hover:scale-105 mb-5 rounded-md"
             />
 
             <button className="absolute bottom-10 left-5 h-12 w-auto p-2 flex gap-1 text-xl ring-1 ring-black rounded-full items-center justify-center hover:scale-110 duration-150">
@@ -33,6 +36,7 @@ export function Summer() {
                 ${clothes.price}
               </footer>
             </button>
+           
           </div>
         ))}
       </div>

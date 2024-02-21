@@ -1,132 +1,53 @@
-import img from "./assets/—Pngtree—black t-shirt mockup_3610326.png";
-import { ShoppingCart } from "lucide-react";
-import { Search } from "lucide-react";
-import { Heart } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { ChevronRight } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
+import { useCallback } from "react";
+import { jeansCollection } from "./data/data";
 
 export function Items() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   return (
     <>
-      <h1 className="font-Inter font-light text-4xl mt-9">Releases</h1>
-      <div className=" w-[1225px] h-[400px] flex flex-wrap gap-2 mt-4">
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
+      <div className="overflow-hidden flex flex-col items-center text-xl">
+        <h1 className="mt-12 font-Inter text-4xl font-light mb-3">
+          The best jeans you need!
+        </h1>
+        <div ref={emblaRef} className="relative  h-[400px]">
+          <div className="flex  gap-1 px-1  w-full bg-stone-50 ">
+            {jeansCollection.map((jeans) => (
+              <div
+                key={jeans.id}
+                className="basis-80 h-[400px] p-3 shrink-0  w-[200px] -z-10 cursor-pointer rounded-md   relative  flex flex-col items-center font-light "
+              >
+                <img
+                  src={jeans.url}
+                  alt=""
+                  className="  h-[90%] w-[90%] mx-auto rounded-md hover:-translate-y-2 duration-200 "
+                />
+                <p className="text-sm">{jeans.Name}</p>
+                <footer className="font-medium text-md">${jeans.price}</footer>
+              </div>
+            ))}
           </div>
-        </div>
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
-          </div>
-        </div>
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
-          </div>
-        </div>
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
-          </div>
-        </div>
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
-          </div>
-        </div>
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
-          </div>
-        </div>
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
-          </div>
-        </div>
-        <div className=" relative bg-stone-200 w-[300px] h-[350px] flex items-center justify-center group cursor-pointer hover:brightness-90 ">
-          <div className="bg-white w-[200px] h-[200px] rounded-full "></div>
-          <img src={img} alt="" className="absolute w-[20rem] h-[20rem] " />
-          <div className="absolute flex gap-5 ">
-            <button className="text-transparent duration-300 group-hover:text-black group-hover:bg-white size-5 bg-transparent w-10 h-10 rounded-full p-2">
-              <ShoppingCart />
-            </button>
-            <button className="text-transparent size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Search />
-            </button>
-            <button className="text-transparent  size-5 bg-transparent duration-300  group-hover:text-black group-hover:bg-white w-10 h-10 rounded-full p-2">
-              <Heart />
-            </button>
-          </div>
+          <button className="absolute left-5 bottom-[50%]" onClick={scrollPrev}>
+            <ChevronLeft />
+          </button>
+          <button
+            className="absolute right-5 bottom-[50%] z-10"
+            onClick={scrollNext}
+          >
+            <ChevronRight />
+          </button>
         </div>
       </div>
     </>
