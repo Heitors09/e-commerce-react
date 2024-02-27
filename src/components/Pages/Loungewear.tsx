@@ -1,13 +1,14 @@
-import { Navbar } from "../navbar";
-import { Linkbar } from "../Linkbar";
 import { ShoppingCart } from "lucide-react";
 import { summerCollection } from "../data/data";
+import { motion } from "framer-motion";
 
 export function Loungewear() {
   return (
-    <div className="flex flex-col items-center">
-      <Navbar />
-
+    <motion.div
+      initial={{ x: "90%" }}
+      animate={{ x: 0 }}
+      className="flex flex-col items-center"
+    >
       <h1 className="font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px] items-center justify-center relative flex flex-col">
         Loungewear
         <div className="bg-lime-200 w-[200px] h-[200px] rounded-full right-80 bottom-0 -z-10 absolute"></div>
@@ -18,7 +19,7 @@ export function Loungewear() {
           className="w-[100px] h-[140px] absolute right-80 rounded-md"
         />
       </h1>
-      <Linkbar />
+
       <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
         {summerCollection.map((clothes) => (
           <div key={clothes.id} className="relative flex font-Inter font-light">
@@ -36,6 +37,6 @@ export function Loungewear() {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

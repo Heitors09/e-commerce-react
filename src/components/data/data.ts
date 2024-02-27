@@ -161,3 +161,50 @@ export const dressesCollection = [
     promotion: true,
   },
 ];
+
+export const jacketsCollection = [
+  {
+    Name: "Green Jacket",
+    id: uuidv4(),
+    url: "https://i.pinimg.com/564x/18/5d/e7/185de788fbe9423466c7200520a356e1.jpg",
+    price: 72,
+  },
+  {
+    Name: "Black Jacket",
+    id: uuidv4(),
+    url: "https://i.pinimg.com/564x/cf/69/69/cf69692c27889cc449f2b1de08fafc38.jpg",
+    price: 80,
+  },
+  {
+    Name: "Brown Jacket",
+    id: uuidv4(),
+    url: "https://i.pinimg.com/564x/25/94/37/259437fec631d8cd4c3671848badea84.jpg",
+    price: 60,
+  },
+  {
+    Name: "Light Brown Jacket",
+    id: uuidv4(),
+    url: "https://i.pinimg.com/564x/43/ca/62/43ca6281bcbaaf5d973ceae3720bb448.jpg",
+    price: 65,
+  },
+  {
+    Name: "Orange Jacket",
+    id: uuidv4(),
+    url: "https://i.pinimg.com/564x/e5/78/be/e578be685920127ddaa074f496b19a37.jpg",
+    price: 82,
+  },
+  {
+    Name: "Blue Jacket",
+    id: uuidv4(),
+    url: "https://i.pinimg.com/564x/dd/49/6c/dd496c9ab561348009e183c11beae427.jpg",
+    price: 76,
+  },
+];
+
+export const clothesCollection = [
+  { name: "summerCollection", items: summerCollection },
+  { name: "autumnCollection", items: autumnCollection },
+  { name: "jeansCollection", items: jeansCollection },
+  { name: "dressesCollection", items: dressesCollection },
+  { name: "jacketsCollection", items: jacketsCollection },
+];

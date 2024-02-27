@@ -1,13 +1,19 @@
-import { Linkbar } from "../Linkbar";
-import { Navbar } from "../navbar";
 import { ShoppingCart } from "lucide-react";
 import { jeansCollection } from "../data/data";
+import { motion } from "framer-motion";
+import { useContext } from "react";
+import { ItemsContext } from "../Context/ProviderItem";
 
 export function Jeans() {
-  return (
-    <div className="flex flex-col items-center">
-      <Navbar />
+  const provider = useContext(ItemsContext);
+  console.log(provider?.cartItems);
 
+  return (
+    <motion.div
+      initial={{ x: "90%" }}
+      animate={{ x: 0 }}
+      className="flex flex-col items-center"
+    >
       <h1 className="font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
         Jeans
         <img
@@ -18,7 +24,7 @@ export function Jeans() {
         <p className="text-xl mt-2">the best jeans you need</p>
         <div className="bg-blue-200 w-[200px] h-[200px] rounded-full right-96  -z-10 absolute"></div>
       </h1>
-      <Linkbar />
+
       <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
         {jeansCollection.map((clothes) => (
           <div
@@ -30,16 +36,18 @@ export function Jeans() {
               className="w-[300px] h-[400px] duration-150 hover:scale-105 mb-5 rounded-md"
             />
 
-            <button className="absolute bottom-10 left-5 h-12 w-auto p-2 flex gap-1 text-xl ring-1 ring-black rounded-full items-center justify-center hover:scale-110 duration-150">
+            <button
+              onClick={() => provider?.addItem(clothes.id)}
+              className="absolute bottom-10 left-5 h-12 w-auto p-2 flex gap-1 text-xl ring-1 ring-black rounded-full items-center justify-center hover:scale-110 duration-150"
+            >
               <ShoppingCart className="size-5" />
               <footer className=" rounded-full h-9 p-1 ">
                 ${clothes.price}
               </footer>
             </button>
-            
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

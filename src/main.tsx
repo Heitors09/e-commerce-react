@@ -9,35 +9,42 @@ import { Loungewear } from "./components/Pages/Loungewear.tsx";
 import { Lightjackets } from "./components/Pages/Lightjackets.tsx";
 import { Jeans } from "./components/Pages/Jeans.tsx";
 import { Dresses } from "./components/Pages/Dresses.tsx";
+import { Index } from "./components/Index.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/summer-collection",
-    element: <Summer />,
-  },
-  {
-    path: "/autumn-collection",
-    element: <Autumn />,
-  },
-  {
-    path: "/loungewear",
-    element: <Loungewear />,
-  },
-  {
-    path: "/light-jackets",
-    element: <Lightjackets />,
-  },
-  {
-    path: "/jeans",
-    element: <Jeans />,
-  },
-  {
-    path: "/dresses",
-    element: <Dresses />,
+    children: [
+      {
+        index: true,
+        element: <Index />,
+      },
+      {
+        path: "/summer-collection",
+        element: <Summer />,
+      },
+      {
+        path: "/autumn-collection",
+        element: <Autumn />,
+      },
+      {
+        path: "/loungewear",
+        element: <Loungewear />,
+      },
+      {
+        path: "/light-jackets",
+        element: <Lightjackets />,
+      },
+      {
+        path: "/jeans",
+        element: <Jeans />,
+      },
+      {
+        path: "/dresses",
+        element: <Dresses />,
+      },
+    ],
   },
 ]);
 
