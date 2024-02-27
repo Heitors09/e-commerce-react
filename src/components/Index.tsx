@@ -17,7 +17,7 @@ export function Index() {
       <div className="flex flex-col items-center">
         <Sections />
         <Items />
-        <h1 className="w-[90%] text-white h-72 bg-banner bg-center mt-12 font-Inter font-light text-6xl pt-14 pl-[135px]">
+        <h1 className=" text-black mt-12 mb-5  font-Inter font-light text-6xl">
           Promotions
         </h1>
         <DressCarousel />

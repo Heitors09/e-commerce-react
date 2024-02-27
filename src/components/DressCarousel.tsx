@@ -18,7 +18,7 @@ export function DressCarousel() {
 
   return (
     <>
-      <div className="overflow-hidden flex flex-col items-center text-xl mt-9">
+      <div className="overflow-hidden flex flex-col items-center text-xl ">
         <div ref={emblaRef} className="relative  h-[400px]">
           <div className="flex  gap-1 px-1  w-full bg-stone-50 ">
             {dressesCollection.map((dress) => {

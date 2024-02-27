@@ -44,7 +44,7 @@ export function Navbar() {
         if (foundItem) {
           foundItems.push(foundItem);
           //afinal se foundItem for true e encontrar passa cada item "foundItem"
-          //com um push para foundItems que espera um inerface Item[]
+          //com um push para foundItems que espera um interface Item[]
         }
       }
     }
@@ -53,6 +53,23 @@ export function Navbar() {
 
   const itemsToBuy = findItemById(clothesCollection, itemIds);
   console.log(itemsToBuy);
+
+  function cauculateTotalPrice(
+    items: Item[],
+    cartItems: { [itemId: string]: number }
+  ) {
+    //os meus props recebem os items do meu carrinho e quais items são esses
+    let totalPrice = 0;
+    //começo com uma variavel de valor inicial 0
+    items.forEach((item) => {
+      if (cartItems[item.id]) {
+        totalPrice += item.price * cartItems[item.id];
+      }
+    });
+    return totalPrice;
+  }
+
+  const total = cauculateTotalPrice(itemsToBuy, cartItems);
 
   return (
     <div className="w-[100%] bg-white h-[75px]  flex gap-5 p-5 items-center justify-between font-light drop-shadow-md">
@@ -102,8 +119,13 @@ export function Navbar() {
         <a href="">Register</a>
         <a href="">Login</a>
         <Dialog.Root>
-          <Dialog.Trigger>
+          <Dialog.Trigger className="relative">
             <ShoppingCart className="text-slate-900" />
+            {itemsToBuy.length > 0 ? (
+              <div className="bg-red-500 size-3 bottom-0 rounded-full absolute duration-150" />
+            ) : (
+              <div className="bg-transparent size-3 bottom-0 rounded-full absolute duration-150" />
+            )}
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Content>
@@ -125,13 +147,21 @@ export function Navbar() {
                       <div className="flex flex-col gap-3  justify-center">
                         <h2>{item.Name}</h2>
                         <h3>${item.price}</h3>
+                        <div className="font-light text-sm flex gap-1">
+                          <h3>amount:</h3>
+                          <p className="ring-1 rounded-full size-5 pl-1.5">
+                            {cartItems[item.id]}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
                   <div className="w-full h-20  flex flex-col gap-2 items-center justify-center bg-slate-800 text-white">
-                    <div className="flex gap-3">
-                      <h2 className="font-medium font-Inter ">Total:</h2>
-                      <p>$</p>
+                    <div className="flex items-center gap-2">
+                      <h2 className="font-medium font-Inter ">Total: </h2>
+                      <p className=" flex items-center justify-center font-bold">
+                        $ {total}
+                      </p>
                     </div>
                     <button className="bg-white rounded-full w-20 text-slate-800">
                       Buy
