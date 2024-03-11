@@ -1,12 +1,12 @@
 import { Search } from "lucide-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ItemsContext } from "./Context/ProviderItem";
 import { clothesCollection } from "./data/data";
 
@@ -27,6 +27,11 @@ export function Navbar() {
   const provider = useContext(ItemsContext);
   const cartItems = provider?.cartItems || {};
   const itemIds = Object.keys(cartItems);
+  const navigate = useNavigate();
+
+  function handleGoToCart() {
+    navigate("/Cart");
+  }
 
   function findItemById(collections: Collection[], itemIds: string[]) {
     const foundItems: Item[] = [];
@@ -37,10 +42,10 @@ export function Navbar() {
       const { items } = collection;
       //desestrutura acessando apenas "items" de cada objeto collection
       for (const itemId of itemIds) {
-        //cria uma variavel que itera entre cada itemIds recebido
+        //cria uma variável que itera entre cada itemIds recebido
         const foundItem = items.find((item: Item) => item.id === itemId);
         //realiza um find para cada itemId dentro de itemIds comparando com item.id
-        //dos itens da minha coleção e atribui em uma váriavel
+        //dos itens da minha coleção e atribui em uma variável
         if (foundItem) {
           foundItems.push(foundItem);
           //afinal se foundItem for true e encontrar passa cada item "foundItem"
@@ -48,11 +53,15 @@ export function Navbar() {
         }
       }
     }
+
     return foundItems;
   }
 
+  useEffect(() => {
+    provider?.defineFinalItemsToBuy(itemsToBuy);
+  }, [cartItems]);
+
   const itemsToBuy = findItemById(clothesCollection, itemIds);
-  console.log(itemsToBuy);
 
   function cauculateTotalPrice(
     items: Item[],
@@ -163,7 +172,10 @@ export function Navbar() {
                         $ {total}
                       </p>
                     </div>
-                    <button className="bg-white rounded-full w-20 text-slate-800">
+                    <button
+                      className="bg-white rounded-full w-20 text-slate-800"
+                      onClick={handleGoToCart}
+                    >
                       Buy
                     </button>
                   </div>

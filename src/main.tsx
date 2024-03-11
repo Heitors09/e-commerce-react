@@ -10,6 +10,7 @@ import { Lightjackets } from "./components/Pages/Lightjackets.tsx";
 import { Jeans } from "./components/Pages/Jeans.tsx";
 import { Dresses } from "./components/Pages/Dresses.tsx";
 import { Index } from "./components/Index.tsx";
+import { FinalCart } from "./components/Pages/FinalCart.tsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/dresses",
         element: <Dresses />,
+      },
+      {
+        path: "/Cart",
+        element: <FinalCart />,
       },
     ],
   },

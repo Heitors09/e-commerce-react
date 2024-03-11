@@ -3,16 +3,16 @@ import { ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ItemsContext } from "../Context/ProviderItem";
+import { Toaster } from "sonner";
 
 export function Autumn() {
   const provider = useContext(ItemsContext);
-  console.log(provider?.cartItems);
 
   return (
     <motion.div
       initial={{ x: "90%" }}
       animate={{ x: 0 }}
-      className="flex flex-col items-center h-auto"
+      className="flex flex-col items-center h-auto relative"
     >
       <h1 className="font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
         Autumn collection
@@ -48,6 +48,7 @@ export function Autumn() {
           </div>
         ))}
       </div>
+      <Toaster position="bottom-right" richColors />
     </motion.div>
   );
 }
