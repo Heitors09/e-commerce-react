@@ -7,6 +7,7 @@ type ItemsContextType = {
   removeItem: (itemId: string) => void;
   defineFinalItemsToBuy: (finalItems: Item[]) => void;
   finalItemsToBuy: Item[];
+  deleteItem: (itemId: string) => void;
 };
 
 export const ItemsContext = createContext<ItemsContextType | null>(null);
@@ -26,7 +27,14 @@ interface Item {
 export function ProviderItem({ children }: ProviderItemProps) {
   const [cartItems, setCartItems] = useState<{ [itemId: string]: number }>({});
   const [finalItemsToBuy, setFinalItemsToBuy] = useState<Item[]>([]);
-  
+  console.log(cartItems);
+
+  function deleteItem(itemId: string) {
+    const deletedState = { ...cartItems };
+    delete deletedState[itemId];
+
+    setCartItems(deletedState);
+  }
 
   function defineFinalItemsToBuy(finalItems: Item[]) {
     setFinalItemsToBuy(finalItems);
@@ -40,11 +48,11 @@ export function ProviderItem({ children }: ProviderItemProps) {
 
   function removeItem(itemId: string) {
     const currentQuantity = cartItems[itemId] || 0;
-    if (currentQuantity === 0) {
+    if (currentQuantity === 1) {
       return;
-    } else {
-      setCartItems({ ...cartItems, [itemId]: currentQuantity - 1 });
     }
+
+    setCartItems({ ...cartItems, [itemId]: currentQuantity - 1 });
   }
 
   const contextValue = {
@@ -53,6 +61,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
     removeItem,
     defineFinalItemsToBuy,
     finalItemsToBuy,
+    deleteItem,
   };
 
   return (

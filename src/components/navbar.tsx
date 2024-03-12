@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Trash2Icon } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
@@ -30,7 +30,9 @@ export function Navbar() {
   const navigate = useNavigate();
 
   function handleGoToCart() {
-    navigate("/Cart");
+    if (itemIds.length > 0) {
+      navigate("/Checkout");
+    }
   }
 
   function findItemById(collections: Collection[], itemIds: string[]) {
@@ -141,31 +143,37 @@ export function Navbar() {
               <motion.div
                 initial={{ x: "90%" }}
                 animate={{ x: 0 }}
-                className="absolute top-0 right-0 h-full rounded-md w-[300px] bg-slate-900 overflow-y-auto"
+                className="absolute top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 overflow-y-auto"
               >
                 <div className="relative">
                   <Dialog.Trigger>
-                    <X className="text-white m-3" />
+                    <X className="m-3" />
                   </Dialog.Trigger>
                   {itemsToBuy.map((item) => (
                     <div
                       key={item.id}
-                      className="m-auto bg-slate-700 ring-sky-200 ring-2 w-[90%] rounded-md h-auto max-h-[150px] flex mb-1  items-center gap-2  font-Inter text-white mt-5"
+                      className="m-auto bg-white ring-slate-300 ring-2 w-[90%] rounded-md h-auto max-h-[150px] flex mb-2  items-center gap-2  font-Inter  mt-5"
                     >
                       <img className="w-[30%] rounded-md" src={item.url}></img>
                       <div className="flex flex-col gap-3  justify-center">
                         <h2>{item.Name}</h2>
                         <h3>${item.price}</h3>
-                        <div className="font-light text-sm flex gap-1">
+                        <div className="font-light text-sm flex gap-1 items-center">
                           <h3>amount:</h3>
                           <p className="ring-1 rounded-full size-5 pl-1.5">
                             {cartItems[item.id]}
                           </p>
+                          <button
+                            onClick={() => provider?.deleteItem(item.id)}
+                            className="hover:text-red-500 duration-150"
+                          >
+                            <Trash2Icon className="size-5 ml-12" />
+                          </button>
                         </div>
                       </div>
                     </div>
                   ))}
-                  <div className="w-full h-20  flex flex-col gap-2 items-center justify-center bg-slate-800 text-white">
+                  <div className="w-full h-20  flex flex-col gap-1 items-center justify-center bg-white">
                     <div className="flex items-center gap-2">
                       <h2 className="font-medium font-Inter ">Total: </h2>
                       <p className=" flex items-center justify-center font-bold">
@@ -173,7 +181,7 @@ export function Navbar() {
                       </p>
                     </div>
                     <button
-                      className="bg-white rounded-full w-20 text-slate-800"
+                      className="bg-red-500 rounded-full w-20 text-white p-2 font-bold"
                       onClick={handleGoToCart}
                     >
                       Buy
