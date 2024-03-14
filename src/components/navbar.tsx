@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useContext, useEffect } from "react";
 import { ItemsContext } from "./Context/ProviderItem";
 import { clothesCollection } from "./data/data";
+import googleIcon from "./assets/google-icon.svg";
 
 interface Item {
   Name: string;
@@ -28,6 +29,8 @@ export function Navbar() {
   const cartItems = provider?.cartItems || {};
   const itemIds = Object.keys(cartItems);
   const navigate = useNavigate();
+  const user = provider?.user;
+  const auth = provider?.authGoogle;
 
   function handleGoToCart() {
     if (itemIds.length > 0) {
@@ -127,8 +130,20 @@ export function Navbar() {
         </Link>
       </div>
       <div className="font-Inter text-slate-900  flex gap-5">
-        <a href="">Register</a>
-        <a href="">Login</a>
+        {user ? (
+          <div className="flex items-center gap-2">
+            <p>{user.name}</p>
+            <img className="rounded-full size-10" src={user.avatar} />
+          </div>
+        ) : (
+          <button
+            onClick={provider?.authGoogle}
+            className="bg-red-500 h-[30px] w-[200px] text-white font-bold text-sm flex items-center gap-2 p-5 hover:opacity-90 rounded-md"
+          >
+            <img className="size-5" src={googleIcon} />{" "}
+            <span>Log in with Google</span>
+          </button>
+        )}
         <Dialog.Root>
           <Dialog.Trigger className="relative">
             <ShoppingCart className="text-slate-900" />

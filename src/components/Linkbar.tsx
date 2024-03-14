@@ -10,33 +10,28 @@ export function Linkbar() {
           </Link>
         </li>
         <li>
-          <Link to="/summer-collection" className="hover:underline">
+          <Link to="/summer-Collection" className="hover:underline">
             Summer
           </Link>
         </li>
 
         <li>
-          <Link to="/autumn-collection" className="hover:underline">
+          <Link to="/autumn-Collection" className="hover:underline">
             Autumn
           </Link>
         </li>
         <li>
-          <Link to="/light-jackets" className="hover:underline">
+          <Link to="/jackets-Collection" className="hover:underline">
             Light Jackets
           </Link>
         </li>
         <li>
-          <Link to="/jeans" className="hover:underline">
+          <Link to="/jeans-Collection" className="hover:underline">
             Jeans
           </Link>
         </li>
         <li>
-          <Link to="/loungewear" className="hover:underline">
-            Loungewear
-          </Link>
-        </li>
-        <li>
-          <Link to="/dresses" className="hover:underline">
+          <Link to="/dresses-Collection" className="hover:underline">
             Dresses
           </Link>
         </li>

@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import { Summer } from "./components/Pages/Summer.tsx";
 import { Autumn } from "./components/Pages/Autumn.tsx";
-import { Loungewear } from "./components/Pages/Loungewear.tsx";
 import { Lightjackets } from "./components/Pages/Lightjackets.tsx";
 import { Jeans } from "./components/Pages/Jeans.tsx";
 import { Dresses } from "./components/Pages/Dresses.tsx";
 import { Index } from "./components/Index.tsx";
 import { FinalCart } from "./components/Pages/FinalCart.tsx";
+import { Payment } from "./components/Pages/Payment.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,32 +22,32 @@ const router = createBrowserRouter([
         element: <Index />,
       },
       {
-        path: "/summer-collection",
+        path: "/summer-Collection",
         element: <Summer />,
       },
       {
-        path: "/autumn-collection",
+        path: "/autumn-Collection",
         element: <Autumn />,
       },
       {
-        path: "/loungewear",
-        element: <Loungewear />,
-      },
-      {
-        path: "/light-jackets",
+        path: "/jackets-Collection",
         element: <Lightjackets />,
       },
       {
-        path: "/jeans",
+        path: "/jeans-Collection",
         element: <Jeans />,
       },
       {
-        path: "/dresses",
+        path: "/dresses-Collection",
         element: <Dresses />,
       },
       {
         path: "/Checkout",
         element: <FinalCart />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
   },

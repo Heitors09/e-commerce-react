@@ -1,5 +1,4 @@
 import { summerCollection } from "../data/data";
-import { ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ItemsContext } from "../Context/ProviderItem";
@@ -29,22 +28,22 @@ export function Summer() {
         {summerCollection.map((clothes) => (
           <div
             key={clothes.id}
-            className="relative flex font-Inter font-light group mt-4"
+            className=" flex flex-col font-Inter font-light group mt-4"
           >
             <img
               src={clothes.url}
-              className="w-[300px] h-[400px] duration-150 hover:scale-105 mb-5 rounded-md"
+              className="w-[300px] h-[400px] duration-150 hover:scale-105 mb-2 rounded-md"
             />
-
-            <button
-              onClick={() => provider?.addItem(clothes.id)}
-              className="absolute bottom-10 left-5 h-12 w-auto p-2 flex gap-1 text-xl ring-1 ring-black rounded-full items-center justify-center hover:scale-110 duration-150"
-            >
-              <ShoppingCart className="size-5" />
-              <footer className=" rounded-full h-9 p-1 ">
-                ${clothes.price}
-              </footer>
-            </button>
+            <p>{clothes.Name}</p>
+            <div className="flex justify-between">
+              <footer className="  text-xl p-1">${clothes.price}</footer>
+              <button
+                className="w-12 text-white bg-black "
+                onClick={() => provider?.addItem(clothes.id)}
+              >
+                Buy
+              </button>
+            </div>
           </div>
         ))}
       </div>

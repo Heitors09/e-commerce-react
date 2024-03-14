@@ -1,5 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
-import { toast } from "sonner";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../services/firebase";
 
 type ItemsContextType = {
   cartItems: { [itemId: string]: number };
@@ -8,6 +9,8 @@ type ItemsContextType = {
   defineFinalItemsToBuy: (finalItems: Item[]) => void;
   finalItemsToBuy: Item[];
   deleteItem: (itemId: string) => void;
+  user: User | undefined;
+  authGoogle: () => Promise<void>;
 };
 
 export const ItemsContext = createContext<ItemsContextType | null>(null);
@@ -24,10 +27,31 @@ interface Item {
   promotion?: boolean;
 }
 
+type User = {
+  id: string;
+  name: string | null;
+  avatar: string | null;
+};
+
 export function ProviderItem({ children }: ProviderItemProps) {
   const [cartItems, setCartItems] = useState<{ [itemId: string]: number }>({});
   const [finalItemsToBuy, setFinalItemsToBuy] = useState<Item[]>([]);
-  console.log(cartItems);
+  const [user, setUser] = useState<User>();
+
+  async function authGoogle() {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+
+    if (result.user) {
+      const { displayName, photoURL, uid } = result.user;
+
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL,
+      });
+    }
+  }
 
   function deleteItem(itemId: string) {
     const deletedState = { ...cartItems };
@@ -41,7 +65,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
   }
 
   function addItem(itemId: string) {
-    toast.success("Item adicionado ao Carrinho");
+    alert("Item adicionado ao carrinho");
     const currentQuantity = cartItems[itemId] || 0;
     setCartItems({ ...cartItems, [itemId]: currentQuantity + 1 });
   }
@@ -62,6 +86,8 @@ export function ProviderItem({ children }: ProviderItemProps) {
     defineFinalItemsToBuy,
     finalItemsToBuy,
     deleteItem,
+    user,
+    authGoogle,
   };
 
   return (

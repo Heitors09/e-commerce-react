@@ -1,11 +1,50 @@
 import { useContext } from "react";
 import { ItemsContext } from "../Context/ProviderItem";
 import { ArrowRight, ShoppingCart, Trash2Icon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+interface Item {
+  Name: string;
+  id: string;
+  url: string;
+  price: number;
+  promotion?: boolean;
+}
 
 export function FinalCart() {
   const provider = useContext(ItemsContext);
   const finalItems = provider?.finalItemsToBuy;
   const quantity = provider?.cartItems;
+  const navigate = useNavigate();
+  const user = provider?.user;
+  const cartItems = provider?.cartItems;
+
+  function cauculateBuyPrice(
+    items: Item[],
+    cartItems: { [itemId: string]: number }
+  ) {
+    //os meus props recebem os items do meu carrinho e quais items são esses
+    let totalPrice = 0;
+    //começo com uma variavel de valor inicial 0
+    items.forEach((item) => {
+      if (cartItems[item.id]) {
+        totalPrice += item.price * cartItems[item.id];
+      }
+    });
+    return totalPrice;
+  }
+
+  const total = cauculateBuyPrice(finalItems, cartItems);
+  console.log(total);
+
+  function handleGoToPayment() {
+    if (user) {
+      navigate("/payment");
+      return;
+    }
+
+    alert("é necessário estar logado para completar esta ação");
+  }
 
   const cauculateItemTotalPrice = (itemId: string) => {
     const item = finalItems.find((item) => item.id === itemId);
@@ -67,9 +106,15 @@ export function FinalCart() {
         </h2>
         <div className="flex justify-between ring-1  px-5 ring-slate-200 bg-white">
           <h2>Valor</h2>
-          <p>Total</p>
+          <p className="flex gap-1 font-bold">
+            <p>$</p>
+            {total}
+          </p>
         </div>
-        <button className="bg-red-500 text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-8">
+        <button
+          onClick={handleGoToPayment}
+          className="bg-red-500 text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-8"
+        >
           <p>Go to Payment</p>
           <ArrowRight className="size-5" />
         </button>
