@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Summer } from "./components/Pages/Summer.tsx";
 import { Autumn } from "./components/Pages/Autumn.tsx";
 import { Lightjackets } from "./components/Pages/Lightjackets.tsx";

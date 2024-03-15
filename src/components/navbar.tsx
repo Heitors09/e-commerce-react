@@ -30,7 +30,6 @@ export function Navbar() {
   const itemIds = Object.keys(cartItems);
   const navigate = useNavigate();
   const user = provider?.user;
-  const auth = provider?.authGoogle;
 
   function handleGoToCart() {
     if (itemIds.length > 0) {
