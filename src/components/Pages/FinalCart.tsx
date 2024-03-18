@@ -57,7 +57,7 @@ export function FinalCart() {
 
   return (
     <div className="flex items-start bg-slate-100">
-      <div className="flex flex-col items-center text-sm">
+      <div className="mt-[100px]  flex flex-col items-center text-sm">
         <div className="h-6 bg-white ring-1  m-[50px] ring-slate-200 w-[800px] flex justify-between px-7">
           <p>Itens</p>
           <ul className="flex gap-7">
@@ -99,7 +99,7 @@ export function FinalCart() {
           ))}
         </div>
       </div>
-      <aside className="flex flex-col gap-4 mt-[50px] w-64">
+      <aside className="flex flex-col gap-4 mt-[120px] w-64">
         <h2 className="flex gap-2 items-end justify-center">
           <ShoppingCart className="text-red-500" />
           Resumo da Compra

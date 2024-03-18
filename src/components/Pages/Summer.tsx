@@ -2,10 +2,11 @@ import { summerCollection } from "../data/data";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ItemsContext } from "../Context/ProviderItem";
+import { useScrollReset } from "../hooks/useScrollReset";
 
 export function Summer() {
   const provider = useContext(ItemsContext);
-  console.log(provider?.cartItems);
+  useScrollReset();
 
   return (
     <motion.div
@@ -13,7 +14,7 @@ export function Summer() {
       animate={{ x: 0 }}
       className="flex flex-col items-center"
     >
-      <h1 className="font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px] items-center justify-center relative flex flex-col">
+      <h1 className="mt-[105px] font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px] items-center justify-center relative flex flex-col">
         Summer Sale
         <div className="bg-yellow-200 w-[200px] h-[200px] rounded-full right-80 -z-10 absolute"></div>
         <p className="text-xl">the best summer collection</p>

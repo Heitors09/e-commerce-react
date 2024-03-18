@@ -2,10 +2,11 @@ import { jacketsCollection } from "../data/data";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ItemsContext } from "../Context/ProviderItem";
+import { useScrollReset } from "../hooks/useScrollReset";
 
 export function Lightjackets() {
   const provider = useContext(ItemsContext);
-  console.log(provider?.cartItems);
+  useScrollReset();
 
   return (
     <motion.div
@@ -13,12 +14,12 @@ export function Lightjackets() {
       animate={{ x: 0 }}
       className="flex flex-col items-center"
     >
-      <h1 className="font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
+      <h1 className="mt-[105px] font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
         Light Jackets
         <img
           src="https://i.pinimg.com/564x/c2/a7/0e/c2a70e903b7d4f2b9f44fc60d08d465a.jpg"
           alt=""
-          className="w-[100px] h-[140px] absolute right-96 rounded-md"
+          className="w-[100px] h-[140px] absolute right-80 rounded-md"
         />
         <p className="text-xl mt-2">the best jackets you need</p>
         <div className="bg-slate-300 w-[200px] h-[200px] rounded-full right-96 bottom-0 -z-10 absolute"></div>

@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export function Linkbar() {
   return (
-    <div className="bg-stone-100 w-[100%] h-12 flex items-center justify-center">
-      <ul className="font-Inter font-light flex gap-9">
+    <div className="fixed z-10 drop-shadow-md top-[75px] bg-black w-[100%] h-5 flex items-center justify-center">
+      <ul className="font-Inter text-sm text-white font-light flex gap-9">
         <li>
           <Link to="/" className="hover:underline">
             Home

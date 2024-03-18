@@ -2,10 +2,11 @@ import { dressesCollection } from "../data/data";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ItemsContext } from "../Context/ProviderItem";
+import { useScrollReset } from "../hooks/useScrollReset";
 
 export function Dresses() {
   const provider = useContext(ItemsContext);
-  console.log(provider?.cartItems);
+  useScrollReset();
 
   return (
     <motion.div
@@ -13,7 +14,7 @@ export function Dresses() {
       animate={{ x: 0 }}
       className="flex flex-col items-center"
     >
-      <h1 className="font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
+      <h1 className="mt-[105px]  font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
         Dresses
         <img
           src="https://i.pinimg.com/564x/9b/3e/55/9b3e5576edf9e22e57f6d7229055d235.jpg"

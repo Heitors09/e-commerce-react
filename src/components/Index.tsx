@@ -5,13 +5,13 @@ import { Items } from "./Items";
 import { Newsletter } from "./Newsletter";
 import { Contacts } from "./Contacts";
 import { Outlet } from "react-router-dom";
+import { useScrollReset } from "./hooks/useScrollReset";
 
 export function Index() {
+  useScrollReset();
+
   return (
     <>
-      <h2 className="bg-slate-900 font-Inter font-light text-white flex justify-center">
-        DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS
-      </h2>
       <Outlet />
       <EmblaCarousel />
       <div className="flex flex-col items-center">

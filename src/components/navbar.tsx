@@ -85,7 +85,10 @@ export function Navbar() {
   const total = cauculateTotalPrice(itemsToBuy, cartItems);
 
   return (
-    <div className="w-[100%] bg-white h-[75px]  flex gap-5 p-5 items-center justify-between font-light drop-shadow-md">
+    <div
+      className="
+    fixed z-10 w-[100%] bg-white h-[75px]  flex gap-5 p-5 items-center justify-between font-light"
+    >
       <div className="flex items-center gap-3">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
@@ -113,12 +116,12 @@ export function Navbar() {
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
         </DropdownMenu.Root>
-        <div className="flex">
+        <div className="flex items-center">
           <textarea
-            className="p-2 rounded-l-lg h-10 bg-transparent resize-none outline-none pt-2 bg-white border-solid border-bottom-2  border-slate-900 font-Inter font-light overflow-hidden text-nowrap ring-1"
+            className="p-2 rounded-l-lg h-[34px] bg-transparent resize-none outline-none  bg-white border-solid border-bottom-2  ring-black font-Inter font-light overflow-hidden text-nowrap ring-1"
             placeholder="Search"
           ></textarea>
-          <button className=" h-10 w-9 rounded-r-lg bg-slate-900 p-2">
+          <button className=" h-[35px] w-9 rounded-r-lg bg-black p-2">
             <Search className="text-white size-5" />
           </button>
         </div>
@@ -131,8 +134,8 @@ export function Navbar() {
       <div className="font-Inter text-slate-900  flex gap-5">
         {user ? (
           <div className="flex items-center gap-2">
-            <p>{user.name}</p>
-            <img className="rounded-full size-10" src={user.avatar} />
+            <p className="text-sm font-bold">welcome, {user.name}</p>
+            <img className="rounded-full size-7" src={user.avatar} />
           </div>
         ) : (
           <button
@@ -157,7 +160,7 @@ export function Navbar() {
               <motion.div
                 initial={{ x: "90%" }}
                 animate={{ x: 0 }}
-                className="absolute top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 overflow-y-auto"
+                className="fixed z-10 top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 overflow-y-auto"
               >
                 <div className="relative">
                   <Dialog.Trigger>

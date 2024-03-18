@@ -19,7 +19,7 @@ export function EmblaCarousel() {
   }, [emblaApi]);
 
   return (
-    <div className="overflow-hidden  ">
+    <div className="overflow-hidden">
       <div ref={emblaRef}>
         <div className="flex">
           <div className=" shrink-0 basis-full flex gap-5 bg-stone-50">

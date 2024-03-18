@@ -50,6 +50,8 @@ export function ProviderItem({ children }: ProviderItemProps) {
         name: displayName,
         avatar: photoURL,
       });
+    } else {
+      console.error(new Error());
     }
   }
 
