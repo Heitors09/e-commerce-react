@@ -87,7 +87,7 @@ export function Navbar() {
   return (
     <div
       className="
-    drop-shadow-md w-[100%] sticky top-0 z-10 bg-white h-[75px] xl:gap-72 gap-64 flex items-center font-light justify-center"
+    drop-shadow-md w-[100%] sticky top-0 z-10 bg-white h-[75px] 2xl:gap-96 xl:gap-72 gap-64 flex items-center font-light justify-center"
     >
       <div className="flex items-center gap-3">
         <DropdownMenu.Root>
