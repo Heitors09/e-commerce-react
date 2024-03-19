@@ -10,7 +10,9 @@ function App() {
       <ProviderItem>
         <Linkbar />
         <Navbar />
-        <Outlet />
+        <div className="overflow-hidden">
+          <Outlet />
+        </div>
       </ProviderItem>
     </>
   );
