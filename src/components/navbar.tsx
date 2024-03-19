@@ -121,7 +121,7 @@ export function Navbar() {
             className="p-2 rounded-l-lg h-[34px] bg-transparent resize-none outline-none  bg-white border-solid border-bottom-2  ring-black font-Inter font-light overflow-hidden text-nowrap ring-1"
             placeholder="Search"
           ></textarea>
-          <button className=" h-[35px] w-9 rounded-r-lg bg-black p-2">
+          <button className=" h-[34px] w-9 rounded-r-lg bg-black p-2">
             <Search className="text-white size-5" />
           </button>
         </div>
