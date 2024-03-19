@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <ProviderItem>
-        <Navbar />
         <Linkbar />
+        <Navbar />
         <Outlet />
       </ProviderItem>
     </>

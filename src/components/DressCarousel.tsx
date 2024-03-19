@@ -18,9 +18,9 @@ export function DressCarousel() {
 
   return (
     <>
-      <div className="overflow-hidden flex flex-col items-center text-xl ">
+      <div className="overflow-hidden flex flex-col items-center text-xl relative ">
         <div ref={emblaRef} className="relative  h-[400px]">
-          <div className="flex  gap-1 px-1  w-full ">
+          <div className="flex  w-full ">
             {dressesCollection.map((dress) => {
               if (dress.promotion) {
                 return (
@@ -48,20 +48,19 @@ export function DressCarousel() {
             })}
           </div>
         </div>
-        <div className="flex gap-3">
-          <button
-            className="p-5 bg-stone-100 rounded-full"
-            onClick={scrollPrev}
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            className="p-5 bg-stone-100 rounded-full"
-            onClick={scrollNext}
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        </div>
+
+        <button
+          className="p-5 bg-transparent absolute rounded-full z-20 top-[40%] left-0"
+          onClick={scrollPrev}
+        >
+          <ChevronLeft className="size-5" />
+        </button>
+        <button
+          className="p-5 bg-transparent absolute rounded-full z-20 top-[40%] right-0"
+          onClick={scrollNext}
+        >
+          <ChevronRight className="size-5" />
+        </button>
       </div>
     </>
   );

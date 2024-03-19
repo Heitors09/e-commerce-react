@@ -22,27 +22,27 @@ const router = createBrowserRouter([
         element: <Index />,
       },
       {
-        path: "/summer-Collection",
+        path: "/summer-collection",
         element: <Summer />,
       },
       {
-        path: "/autumn-Collection",
+        path: "/autumn-collection",
         element: <Autumn />,
       },
       {
-        path: "/jackets-Collection",
+        path: "/jackets-collection",
         element: <Lightjackets />,
       },
       {
-        path: "/jeans-Collection",
+        path: "/jeans-collection",
         element: <Jeans />,
       },
       {
-        path: "/dresses-Collection",
+        path: "/dresses-collection",
         element: <Dresses />,
       },
       {
-        path: "/Checkout",
+        path: "/checkout",
         element: <FinalCart />,
       },
       {

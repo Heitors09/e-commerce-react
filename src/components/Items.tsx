@@ -18,11 +18,11 @@ export function Items() {
 
   return (
     <>
-      <div className="overflow-hidden flex flex-col items-center text-xl">
+      <div className="overflow-hidden relative flex flex-col items-center text-xl">
         <h1 className="mt-12 font-Inter text-4xl font-light mb-3">
           The best jeans you need!
         </h1>
-        <div ref={emblaRef} className="relative  h-[400px]">
+        <div ref={emblaRef} className="relative h-[400px]">
           <div className="flex  w-full ">
             {jeansCollection.map((jeans) => (
               <div
@@ -40,20 +40,19 @@ export function Items() {
             ))}
           </div>
         </div>
-        <div className="flex gap-3">
-          <button
-            className="p-5 bg-stone-100 rounded-full"
-            onClick={scrollPrev}
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            className="p-5 bg-stone-100 rounded-full"
-            onClick={scrollNext}
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        </div>
+
+        <button
+          className="p-5 bg-transparent rounded-full absolute top-[50%]  z-20 left-0"
+          onClick={scrollPrev}
+        >
+          <ChevronLeft className="size-5" />
+        </button>
+        <button
+          className=" p-5 bg-transparent rounded-full absolute top-[50%]  z-20 right-0"
+          onClick={scrollNext}
+        >
+          <ChevronRight className="size-5" />
+        </button>
       </div>
     </>
   );

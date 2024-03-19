@@ -33,7 +33,7 @@ export function Navbar() {
 
   function handleGoToCart() {
     if (itemIds.length > 0) {
-      navigate("/Checkout");
+      navigate("/checkout");
     }
   }
 
@@ -87,7 +87,7 @@ export function Navbar() {
   return (
     <div
       className="
-    fixed z-10 w-[100%] bg-white h-[75px]  flex gap-5 p-5 items-center justify-between font-light"
+    drop-shadow-md w-[100%] sticky top-0 z-10 bg-white h-[75px] xl:gap-96 gap-72 flex items-center font-light justify-center"
     >
       <div className="flex items-center gap-3">
         <DropdownMenu.Root>
@@ -98,7 +98,7 @@ export function Navbar() {
           </DropdownMenu.Trigger>
           <DropdownMenu.Portal>
             <DropdownMenu.Content
-              className="bg-white rounded-md drop-shadow-md font-Inter font-light outline-none ml-3 w-[200px] h-[100%] flex flex-col gap-5 p-2 "
+              className="bg-white  drop-shadow-md font-Inter font-light outline-none ml-3 w-[200px] h-[100%] flex flex-col gap-5 p-2 "
               sideOffset={2}
             >
               <DropdownMenu.Item className="outline-none hover:bg-slate-900 hover:rounded-md duration-150 hover:text-white hover:cursor-pointer">
@@ -126,7 +126,7 @@ export function Navbar() {
           </button>
         </div>
       </div>
-      <div className="flex gap-1 text-slate-900 font-Inter mr-[120px]">
+      <div className="flex gap-1 text-slate-900 font-Inter">
         <Link to="/" className="text-xl">
           VIBRA.
         </Link>

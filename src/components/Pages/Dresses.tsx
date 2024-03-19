@@ -14,7 +14,7 @@ export function Dresses() {
       animate={{ x: 0 }}
       className="flex flex-col items-center"
     >
-      <h1 className="mt-[105px]  font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
+      <h1 className="mt-[50px]  font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
         Dresses
         <img
           src="https://i.pinimg.com/564x/9b/3e/55/9b3e5576edf9e22e57f6d7229055d235.jpg"
@@ -25,7 +25,7 @@ export function Dresses() {
         <div className="bg-pink-200 w-[200px] h-[200px] rounded-full right-96 bottom-0 -z-10 absolute"></div>
       </h1>
 
-      <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
+      <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px] mb-14">
         {dressesCollection.map((clothes) => (
           <div
             key={clothes.id}

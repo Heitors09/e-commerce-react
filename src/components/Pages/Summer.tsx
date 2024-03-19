@@ -14,7 +14,7 @@ export function Summer() {
       animate={{ x: 0 }}
       className="flex flex-col items-center"
     >
-      <h1 className="mt-[105px] font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px] items-center justify-center relative flex flex-col">
+      <h1 className="mt-[50px] font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px] items-center justify-center relative flex flex-col">
         Summer Sale
         <div className="bg-yellow-200 w-[200px] h-[200px] rounded-full right-80 -z-10 absolute"></div>
         <p className="text-xl">the best summer collection</p>
@@ -25,11 +25,11 @@ export function Summer() {
         />
       </h1>
 
-      <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
+      <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px] mb-14">
         {summerCollection.map((clothes) => (
           <div
             key={clothes.id}
-            className=" flex flex-col font-Inter font-light group mt-4"
+            className=" flex flex-col font-Inter font-light group mt-4 "
           >
             <img
               src={clothes.url}

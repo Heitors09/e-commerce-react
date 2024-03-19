@@ -12,9 +12,9 @@ export function Autumn() {
     <motion.div
       initial={{ x: "90%" }}
       animate={{ x: 0 }}
-      className="flex flex-col items-center h-auto relative"
+      className="flex flex-col items-center h-auto "
     >
-      <h1 className="mt-[105px]  font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
+      <h1 className="mt-[50px]  font-inter font-light text-6xl text-black  bg-no-repeat bg-center bg-cover w-[100%] h-[200px]  items-center justify-center relative flex flex-col">
         Autumn collection
         <img
           src="https://i.pinimg.com/564x/58/5b/6d/585b6d13f90b53550cc0f78946e26e25.jpg"
@@ -25,7 +25,7 @@ export function Autumn() {
         <div className="bg-red-200 w-[200px] h-[200px] rounded-full right-80  -z-10 absolute"></div>
       </h1>
 
-      <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px]">
+      <div className="flex gap-5 items-center justify-center cursor-pointer flex-wrap w-[1000px] mb-14 ">
         {autumnCollection.map((clothes) => (
           <div
             key={clothes.id}
