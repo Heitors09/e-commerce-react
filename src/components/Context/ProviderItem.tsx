@@ -1,13 +1,14 @@
 import { createContext, useState, ReactNode } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../services/firebase";
+import { toast } from "sonner";
+import { clothesCollection } from "../data/data";
 
 type ItemsContextType = {
-  cartItems: { [itemId: string]: number };
+  cartItems: cartItems[];
   addItem: (itemId: string) => void;
-  removeItem: (itemId: string) => void;
-  defineFinalItemsToBuy: (finalItems: Item[]) => void;
-  finalItemsToBuy: Item[];
+  decreaseItem: (itemId: string) => void;
+  increaseItem: (itemId: string) => void;
   deleteItem: (itemId: string) => void;
   user: User | undefined;
   authGoogle: () => Promise<void>;
@@ -19,13 +20,13 @@ type ProviderItemProps = {
   children: ReactNode;
 };
 
-interface Item {
-  Name: string;
-  id: string;
-  url: string;
-  price: number;
-  promotion?: boolean;
-}
+//interface Item {
+//Name: string;
+//id: string;
+//url: string;
+//price: number;
+//promotion?: boolean;
+//}
 
 type User = {
   id: string;
@@ -33,10 +34,21 @@ type User = {
   avatar: string | null;
 };
 
+type cartItems = {
+  Name: string;
+  id: string;
+  url: string;
+  price: number;
+  promotion?: boolean;
+  quantity: number;
+};
+
+const initialCartItems: cartItems[] = [];
+
 export function ProviderItem({ children }: ProviderItemProps) {
-  const [cartItems, setCartItems] = useState<{ [itemId: string]: number }>({});
-  const [finalItemsToBuy, setFinalItemsToBuy] = useState<Item[]>([]);
+  const [cartItems, setCartItems] = useState<cartItems[]>(initialCartItems);
   const [user, setUser] = useState<User>();
+  console.log(cartItems);
 
   async function authGoogle() {
     const provider = new GoogleAuthProvider();
@@ -56,38 +68,73 @@ export function ProviderItem({ children }: ProviderItemProps) {
   }
 
   function deleteItem(itemId: string) {
-    const deletedState = { ...cartItems };
-    delete deletedState[itemId];
+    const deletedItems = cartItems.filter((item) => item.id !== itemId);
 
-    setCartItems(deletedState);
-  }
-
-  function defineFinalItemsToBuy(finalItems: Item[]) {
-    setFinalItemsToBuy(finalItems);
+    setCartItems(deletedItems);
   }
 
   function addItem(itemId: string) {
-    alert("Item adicionado ao carrinho");
-    const currentQuantity = cartItems[itemId] || 0;
-    setCartItems({ ...cartItems, [itemId]: currentQuantity + 1 });
-  }
-
-  function removeItem(itemId: string) {
-    const currentQuantity = cartItems[itemId] || 0;
-    if (currentQuantity === 1) {
+    const existingItemIndex = cartItems.findIndex((item) => item.id === itemId);
+    if (existingItemIndex !== -1) {
+      setCartItems((prevCartItems) => {
+        const updatedCartItems = [...prevCartItems];
+        updatedCartItems[existingItemIndex].quantity += 1;
+        return updatedCartItems;
+      });
+      toast.success("item adicionado ao carrinho");
       return;
     }
 
-    setCartItems({ ...cartItems, [itemId]: currentQuantity - 1 });
+    for (const collection of clothesCollection) {
+      const { items } = collection;
+      const newItem = items.find((item) => item.id === itemId);
+      if (newItem) {
+        setCartItems((prevCartItems) => [
+          ...prevCartItems,
+          { ...newItem, quantity: 1 },
+        ]);
+        toast.success("novo item adicionado ao carrinho");
+        return;
+      }
+    }
+  }
+
+  function increaseItem(itemId: string) {
+    const nextCartItems = cartItems.map((item) => {
+      if (item.id === itemId) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      } else {
+        return item;
+      }
+    });
+
+    setCartItems(nextCartItems);
+  }
+
+  function decreaseItem(itemId: string) {
+    const nextCartItems = cartItems.map((item) => {
+      if (item.id === itemId && item.quantity > 1) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      } else {
+        return item;
+      }
+    });
+
+    setCartItems(nextCartItems);
   }
 
   const contextValue = {
     cartItems,
     addItem,
-    removeItem,
-    defineFinalItemsToBuy,
-    finalItemsToBuy,
+    decreaseItem,
     deleteItem,
+    increaseItem,
     user,
     authGoogle,
   };

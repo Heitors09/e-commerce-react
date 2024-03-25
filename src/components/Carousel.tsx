@@ -22,7 +22,7 @@ export function EmblaCarousel() {
     <div className="overflow-hidden">
       <div ref={emblaRef}>
         <div className="flex">
-          <div className=" shrink-0 basis-full flex gap-5 bg-stone-50">
+          <div className=" shrink-0 basis-full flex gap-5  bg-stone-50">
             <img
               src="https://i.pinimg.com/564x/a7/1e/64/a71e64ebc036a79f11714c1f34afe79f.jpg"
               alt=""
