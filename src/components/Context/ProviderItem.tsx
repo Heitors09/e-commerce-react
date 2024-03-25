@@ -52,7 +52,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
 
   useEffect(() => {
     setCartItems(itemsOnStorage);
-  }, []);
+  }, [itemsOnStorage]);
 
   async function authGoogle() {
     const provider = new GoogleAuthProvider();
@@ -79,6 +79,10 @@ export function ProviderItem({ children }: ProviderItemProps) {
   }
 
   function addItem(itemId: string) {
+    if (cartItems === null) {
+      console.error("cartItems permanece null");
+    }
+
     const existingItemIndex = cartItems.findIndex((item) => item.id === itemId);
     if (existingItemIndex !== -1) {
       const updatedCartItems = [...cartItems];
