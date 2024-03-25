@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { toast } from "sonner";
@@ -48,7 +48,11 @@ const initialCartItems: cartItems[] = [];
 export function ProviderItem({ children }: ProviderItemProps) {
   const [cartItems, setCartItems] = useState<cartItems[]>(initialCartItems);
   const [user, setUser] = useState<User>();
-  console.log(cartItems);
+  const itemsOnStorage = JSON.parse(localStorage.getItem("items"));
+
+  useEffect(() => {
+    setCartItems(itemsOnStorage);
+  }, []);
 
   async function authGoogle() {
     const provider = new GoogleAuthProvider();
@@ -69,19 +73,21 @@ export function ProviderItem({ children }: ProviderItemProps) {
 
   function deleteItem(itemId: string) {
     const deletedItems = cartItems.filter((item) => item.id !== itemId);
-
-    setCartItems(deletedItems);
+    localStorage.setItem("items", JSON.stringify(deletedItems));
+    const deletedStorage = JSON.parse(localStorage.getItem("items"));
+    setCartItems(deletedStorage);
   }
 
   function addItem(itemId: string) {
     const existingItemIndex = cartItems.findIndex((item) => item.id === itemId);
     if (existingItemIndex !== -1) {
-      setCartItems((prevCartItems) => {
-        const updatedCartItems = [...prevCartItems];
-        updatedCartItems[existingItemIndex].quantity += 1;
-        return updatedCartItems;
-      });
-      toast.success("item adicionado ao carrinho");
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingItemIndex].quantity += 1;
+      localStorage.setItem("items", JSON.stringify(updatedCartItems));
+      const storageItems = JSON.parse(localStorage.getItem("items"));
+
+      setCartItems(storageItems);
+      toast.success("+1 adicionado ao carrinho");
       return;
     }
 
@@ -89,12 +95,11 @@ export function ProviderItem({ children }: ProviderItemProps) {
       const { items } = collection;
       const newItem = items.find((item) => item.id === itemId);
       if (newItem) {
-        setCartItems((prevCartItems) => [
-          ...prevCartItems,
-          { ...newItem, quantity: 1 },
-        ]);
+        const updatedCartItems = [...cartItems, { ...newItem, quantity: 1 }];
+        localStorage.setItem("items", JSON.stringify(updatedCartItems));
+        const storageItems = JSON.parse(localStorage.getItem("items"));
+        setCartItems(storageItems);
         toast.success("novo item adicionado ao carrinho");
-        return;
       }
     }
   }
@@ -110,8 +115,10 @@ export function ProviderItem({ children }: ProviderItemProps) {
         return item;
       }
     });
+    localStorage.setItem("items", JSON.stringify(nextCartItems));
+    const storageItems = JSON.parse(localStorage.getItem("items"));
 
-    setCartItems(nextCartItems);
+    setCartItems(storageItems);
   }
 
   function decreaseItem(itemId: string) {
@@ -125,8 +132,9 @@ export function ProviderItem({ children }: ProviderItemProps) {
         return item;
       }
     });
-
-    setCartItems(nextCartItems);
+    localStorage.setItem("items", JSON.stringify(nextCartItems));
+    const storageItems = JSON.parse(localStorage.getItem("items"));
+    setCartItems(storageItems);
   }
 
   const contextValue = {

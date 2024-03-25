@@ -31,6 +31,7 @@ export function Navbar() {
   const user = provider?.user;
   const [searchItem, setSearchItem] = useState("");
   const [resultItems, setResultItems] = useState([]);
+
   console.log(cartItems);
 
   function handleTypeSearch(event: ChangeEvent<HTMLTextAreaElement>) {
@@ -165,7 +166,7 @@ export function Navbar() {
                   <Dialog.Trigger>
                     <X className="m-3" />
                   </Dialog.Trigger>
-                  {cartItems.map((item) => (
+                  {cartItems?.map((item) => (
                     <div
                       key={item.id}
                       className="m-auto bg-white ring-slate-300 ring-2 w-[90%] rounded-md h-auto max-h-[150px] flex mb-2  items-center gap-2  font-Inter  mt-5"
