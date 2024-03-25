@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { clothesCollection } from "../data/data";
 
 type ItemsContextType = {
-  cartItems: cartItems[];
+  cartItems: cartItem[];
   addItem: (itemId: string) => void;
   decreaseItem: (itemId: string) => void;
   increaseItem: (itemId: string) => void;
@@ -34,7 +34,7 @@ type User = {
   avatar: string | null;
 };
 
-type cartItems = {
+type cartItem = {
   Name: string;
   id: string;
   url: string;
@@ -43,10 +43,10 @@ type cartItems = {
   quantity: number;
 };
 
-const initialCartItems: cartItems[] = [];
+const initialCartItems: cartItem[] = [];
 
 export function ProviderItem({ children }: ProviderItemProps) {
-  const [cartItems, setCartItems] = useState<cartItems[]>(initialCartItems);
+  const [cartItems, setCartItems] = useState<cartItem[]>(initialCartItems);
   const [user, setUser] = useState<User>();
   const itemsOnStorage = JSON.parse(localStorage.getItem("items"));
 
