@@ -1,5 +1,4 @@
 import { Search } from "lucide-react";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart, Trash2Icon } from "lucide-react";
@@ -31,8 +30,6 @@ export function Navbar() {
   const user = provider?.user;
   const [searchItem, setSearchItem] = useState("");
   const [resultItems, setResultItems] = useState([]);
-
-  console.log(cartItems);
 
   function handleTypeSearch(event: ChangeEvent<HTMLTextAreaElement>) {
     //tipagem do event com "ChangeEvent e especificando o elemento html em questão"
@@ -68,32 +65,34 @@ export function Navbar() {
     drop-shadow-md w-[100%] sticky top-0 z-30 bg-white h-[75px] 2xl:px-5 2xl:justify-between xl:gap-72 gap-64 flex items-center font-light justify-center"
     >
       <div className="flex items-center gap-3 relative">
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger asChild>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
             <button className="hover:cursor-pointer outline-none p-2  hover:bg-white rounded-full hover:opacity-85  group duration-150">
               <HamburgerMenuIcon className="text-slate-900 size-5  group-hover:text-slate-900" />
             </button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content
-              className="bg-white drop-shadow-md font-Inter font-light outline-none  w-[200px] h-[100%] flex flex-col gap-5 p-2 "
-              sideOffset={2}
+          </Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Content
+              className="fixed top-20 left-5
+             z-40 bg-white drop-shadow-md font-Inter font-light outline-none  w-[200px] rounded-md h-auto flex flex-col gap-5 p-2 "
             >
-              <DropdownMenu.Item className="outline-none hover:bg-slate-900 hover:rounded-md duration-150 hover:text-white hover:cursor-pointer">
-                <button className="p-2">Categories</button>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item className="outline-none hover:bg-slate-900 hover:rounded-md duration-150 hover:text-white hover:cursor-pointer">
-                <button className="p-2">Releases</button>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item className="outline-none hover:bg-slate-900 hover:rounded-md duration-150 hover:text-white hover:cursor-pointer">
-                <button className="p-2">Login</button>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item className="outline-none hover:bg-slate-900 hover:rounded-md duration-150 hover:text-white hover:cursor-pointer">
-                <button className="p-2">Promotions</button>
-              </DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
+              <ul>
+                <li className="outline-none hover:bg-stone-200 hover:rounded-md duration-150 rounded-md hover:cursor-pointer">
+                  <button className="p-2">Categories</button>
+                </li>
+                <li className="outline-none hover:bg-stone-200 hover:rounded-md duration-150  hover:cursor-pointer">
+                  <button className="p-2">Releases</button>
+                </li>
+                <li className="outline-none hover:bg-stone-200 hover:rounded-md duration-150 hover:cursor-pointer">
+                  <button className="p-2">Login</button>
+                </li>
+                <li className="outline-none hover:bg-stone-200 hover:rounded-md duration-150  hover:cursor-pointer">
+                  <button className="p-2">Promotions</button>
+                </li>
+              </ul>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
         <div className="flex items-center relative">
           <textarea
             className=" p-2 rounded-l-lg h-[34px] bg-transparent resize-none outline-none  bg-white border-solid border-bottom-2  ring-black font-Inter font-light overflow-hidden text-nowrap ring-1"
@@ -195,7 +194,7 @@ export function Navbar() {
                       <div className="flex items-center gap-2">
                         <h2 className="font-medium font-Inter ">Total: </h2>
                         <p className=" flex items-center justify-center font-bold">
-                          $ total
+                          $ {provider?.totalPrice}
                         </p>
                       </div>
                       <button

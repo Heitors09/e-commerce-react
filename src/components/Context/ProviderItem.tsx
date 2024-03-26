@@ -12,6 +12,7 @@ type ItemsContextType = {
   deleteItem: (itemId: string) => void;
   user: User | undefined;
   authGoogle: () => Promise<void>;
+  totalPrice: number;
 };
 
 export const ItemsContext = createContext<ItemsContextType | null>(null);
@@ -49,6 +50,16 @@ export function ProviderItem({ children }: ProviderItemProps) {
   const [cartItems, setCartItems] = useState<cartItem[]>(initialCartItems);
   const [user, setUser] = useState<User>();
   const itemsOnStorage = JSON.parse(localStorage.getItem("items"));
+
+  function cauculateTotalPrice() {
+    const totalValue = cartItems.reduce((acc, item) => {
+      return acc + item.price * item.quantity;
+    }, 0);
+
+    return totalValue;
+  }
+
+  const totalPrice = cauculateTotalPrice();
 
   useEffect(() => {
     function storageToCart() {
@@ -157,6 +168,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
     increaseItem,
     user,
     authGoogle,
+    totalPrice,
   };
 
   return (

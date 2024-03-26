@@ -65,7 +65,7 @@ export function FinalCart() {
           <h2>Valor</h2>
           <p className="flex gap-1 font-bold">
             <p>$</p>
-            total
+            {provider?.totalPrice}
           </p>
         </div>
         <button className="bg-red-500 text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-8">
