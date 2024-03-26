@@ -48,10 +48,18 @@ const initialCartItems: cartItem[] = [];
 export function ProviderItem({ children }: ProviderItemProps) {
   const [cartItems, setCartItems] = useState<cartItem[]>(initialCartItems);
   const [user, setUser] = useState<User>();
+  const itemsOnStorage = JSON.parse(localStorage.getItem("items"));
 
   useEffect(() => {
-    const itemsOnStorage = JSON.parse(localStorage.getItem("items"));
-    setCartItems(itemsOnStorage);
+    function storageToCart() {
+      if (itemsOnStorage) {
+        setCartItems(itemsOnStorage);
+        return;
+      }
+      setCartItems([]);
+    }
+
+    storageToCart();
   }, []);
 
   async function authGoogle() {
