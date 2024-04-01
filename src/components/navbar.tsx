@@ -136,7 +136,7 @@ export function Navbar() {
         ) : (
           <button
             onClick={provider?.authGoogle}
-            className="bg-red-500 h-[30px] w-[200px] text-white font-bold text-sm flex items-center gap-2 p-5 hover:opacity-90 rounded-md"
+            className="bg-red-500 h-[30px] w-[213px] text-white font-bold text-sm flex items-center gap-2 p-5 hover:opacity-90 rounded-md"
           >
             <img className="size-5" src={googleIcon} />{" "}
             <span>Log in with Google</span>
@@ -145,7 +145,7 @@ export function Navbar() {
 
         <Dialog.Root>
           <Dialog.Trigger className="relative">
-            <ShoppingCart className="text-slate-900 size-8" />
+            <ShoppingCart className="text-slate-900 size-9" />
             {cartItems.length > 0 ? (
               <div className="bg-red-500 size-5 rounded-full bottom-0  absolute duration-150 flex  justify-center">
                 <p className="text-sm text-white">{cartItems.length}</p>
@@ -199,15 +199,15 @@ export function Navbar() {
                     </div>
                   ))}
                   {cartItems.length > 0 ? (
-                    <div className="sticky bottom-0 w-full h-20  flex flex-col gap-1 items-center justify-center bg-white">
-                      <div className="flex items-center gap-2">
+                    <div className="sticky bottom-0 w-full h-[100px] gap-2  flex flex-col  items-center justify-center bg-white">
+                      <div className="flex items-center gap-1 ">
                         <h2 className="font-medium font-Inter ">Total: </h2>
-                        <p className=" flex items-center justify-center font-bold text-lg">
-                          $ {provider?.totalPrice},00
-                        </p>
+                        <h3 className=" flex items-center justify-center font-bold ">
+                          ${provider?.totalPrice},00
+                        </h3>
                       </div>
                       <button
-                        className="bg-green-500 rounded-full w-20 text-white p-2 font-bold"
+                        className="bg-black hover:bg-green-500 duration-200 rounded-full w-[150px] text-white p-2 font-bold"
                         onClick={handleGoToCart}
                       >
                         Buy

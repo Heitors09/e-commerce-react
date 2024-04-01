@@ -34,11 +34,11 @@ export function ItemPage() {
         </div>
         <aside className=" w-[450px] h-[400px] p-1/2 flex px-5 rounded-r-md bg-stone-100 drop-shadow-md">
           <div className="flex flex-col gap-2 mt-5">
-            <h3 className="flex gap-1 font-bold text-green-500 text-xl items-start">
+            <h3 className="flex gap-1 font-bold  text-xl items-start">
               <span className="flex text-black">
-                <Wallet />$
+                <Wallet />
               </span>
-              {storedItem.price},00
+              $ {storedItem.price},00
             </h3>
             <p className="font-light mt-7">size:</p>
             <div className="flex gap-2 font-light">
