@@ -10,7 +10,7 @@ import { Jeans } from "./components/Pages/Jeans.tsx";
 import { Dresses } from "./components/Pages/Dresses.tsx";
 import { Index } from "./components/Index.tsx";
 import { FinalCart } from "./components/Pages/FinalCart.tsx";
-import { Payment } from "./components/Pages/Payment.tsx";
+import { ItemPage } from "./components/Pages/ItemPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -46,8 +46,8 @@ const router = createBrowserRouter([
         element: <FinalCart />,
       },
       {
-        path: "/payment",
-        element: <Payment />,
+        path: "/:itemId",
+        element: <ItemPage />,
       },
     ],
   },

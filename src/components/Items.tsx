@@ -4,9 +4,12 @@ import { ChevronRight } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
 import { useCallback } from "react";
 import { jeansCollection } from "./data/data";
+import { useContext } from "react";
+import { ItemsContext } from "./Context/ProviderItem";
 
 export function Items() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
+  const provider = useContext(ItemsContext);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -33,6 +36,7 @@ export function Items() {
                   src={jeans.url}
                   alt=""
                   className="h-[90%] w-[90%] mx-auto rounded-md hover:-translate-y-2 duration-200 "
+                  onClick={() => provider.goToItemPage(jeans.id)}
                 />
                 <p className="text-sm">{jeans.Name}</p>
                 <footer className="font-medium text-md">${jeans.price}</footer>

@@ -36,6 +36,7 @@ export function Jeans() {
               <img
                 src={clothes.url}
                 className="w-[300px] h-[400px] duration-150 hover:scale-105 mb-2 rounded-md"
+                onClick={() => provider.goToItemPage(clothes.id)}
               />
               <p>{clothes.Name}</p>
               <div className="flex justify-between">

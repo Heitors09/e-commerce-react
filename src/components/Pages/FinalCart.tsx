@@ -15,7 +15,7 @@ export function FinalCart() {
   const cartItems = provider?.cartItems;
 
   return (
-    <div className="flex items-start bg-slate-100">
+    <div className="flex items-start bg-slate-100 min-h-[500px]">
       <div className="mt-[100px]  flex flex-col items-center text-sm">
         <div className="h-6 bg-white ring-1  m-[50px] ring-slate-200 w-[800px] flex justify-between px-7">
           <p>Itens</p>
@@ -50,7 +50,7 @@ export function FinalCart() {
                 </ul>
               </div>
               <button onClick={() => provider?.deleteItem(item.id)}>
-                <Trash2Icon className="text-red-500" />
+                <Trash2Icon className="text-black hover:text-red-500" />
               </button>
             </div>
           ))}
@@ -58,7 +58,7 @@ export function FinalCart() {
       </div>
       <aside className="flex flex-col gap-4 mt-[120px] w-64">
         <h2 className="flex gap-2 items-end justify-center">
-          <ShoppingCart className="text-red-500" />
+          <ShoppingCart className="text-black" />
           Resumo da Compra
         </h2>
         <div className="flex justify-between ring-1  px-5 ring-slate-200 bg-white">
@@ -68,7 +68,7 @@ export function FinalCart() {
             {provider?.totalPrice}
           </p>
         </div>
-        <button className="bg-red-500 text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-8">
+        <button className="bg-green-500 text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-8">
           <p>Go to Payment</p>
           <ArrowRight className="size-5" />
         </button>

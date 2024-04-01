@@ -13,7 +13,7 @@ export function Sections() {
         >
           SUMMER!
         </h2>
-        <button className="font-Inter w-[150px] h-[50px] bg-white group-hover:-translate-y-5 duration-500  group-hover:bg-slate-900 group-hover:text-white">
+        <button className="font-Inter w-[150px] h-[50px] bg-white group-hover:-translate-y-5 duration-500  group-hover:bg-black group-hover:text-white">
           Shop Now
         </button>
       </Link>
@@ -24,7 +24,7 @@ export function Sections() {
         <h2 className="font-Inter font-bold text-5xl text-white group-hover:-translate-y-5 duration-200">
           DRESSES
         </h2>
-        <button className="font-Inter w-[150px] h-[50px] bg-white group-hover:-translate-y-5 duration-500  group-hover:bg-slate-900 group-hover:text-white ">
+        <button className="font-Inter w-[150px] h-[50px] bg-white group-hover:-translate-y-5 duration-500  group-hover:bg-black group-hover:text-white ">
           Shop Now
         </button>
       </Link>
@@ -38,7 +38,7 @@ export function Sections() {
         >
           LIGHT JACKETS
         </h2>
-        <button className="font-Inter w-[150px] h-[50px] bg-white group-hover:-translate-y-5 duration-500  group-hover:bg-slate-900 group-hover:text-white">
+        <button className="font-Inter w-[150px] h-[50px] bg-white group-hover:-translate-y-5 duration-500  group-hover:bg-black group-hover:text-white">
           Shop Now
         </button>
       </Link>

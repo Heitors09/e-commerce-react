@@ -4,9 +4,12 @@ import { ChevronRight } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
 import { useCallback } from "react";
 import { dressesCollection } from "./data/data";
+import { useContext } from "react";
+import { ItemsContext } from "./Context/ProviderItem";
 
 export function DressCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
+  const provider = useContext(ItemsContext);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -32,14 +35,12 @@ export function DressCarousel() {
                       src={dress.url}
                       alt=""
                       className="  h-[90%] w-[90%] mx-auto rounded-md hover:-translate-y-2 duration-200 "
+                      onClick={() => provider.goToItemPage(dress.id)}
                     />
                     <p className="text-sm">{dress.Name}</p>
                     <div className="flex gap-3">
-                      <footer className="font-medium text-md line line-through">
+                      <footer className="font-medium text-md line ">
                         ${dress.price}
-                      </footer>
-                      <footer className="font-medium text-md line text-red-900">
-                        ${dress.price - 10}
                       </footer>
                     </div>
                   </div>

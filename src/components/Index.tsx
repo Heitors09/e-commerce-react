@@ -18,7 +18,7 @@ export function Index() {
         <Sections />
         <Items />
         <h1 className=" text-black mt-12 mb-5  font-Inter font-light text-6xl">
-          Promotions
+          Dresses
         </h1>
         <DressCarousel />
         <Newsletter />

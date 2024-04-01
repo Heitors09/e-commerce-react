@@ -3,6 +3,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { toast } from "sonner";
 import { clothesCollection } from "../data/data";
+import { useNavigate } from "react-router-dom";
 
 type ItemsContextType = {
   cartItems: cartItem[];
@@ -13,6 +14,8 @@ type ItemsContextType = {
   user: User | undefined;
   authGoogle: () => Promise<void>;
   totalPrice: number;
+  goToItemPage: (itemId: string) => void;
+  currentItem: item[];
 };
 
 export const ItemsContext = createContext<ItemsContextType | null>(null);
@@ -28,6 +31,14 @@ type ProviderItemProps = {
 //price: number;
 //promotion?: boolean;
 //}
+
+type item = {
+  Name: string;
+  id: string;
+  url: string;
+  price: number;
+  quantity?: number;
+};
 
 type User = {
   id: string;
@@ -45,11 +56,26 @@ type cartItem = {
 };
 
 const initialCartItems: cartItem[] = [];
+const initialCurrentItem: item[] = [];
 
 export function ProviderItem({ children }: ProviderItemProps) {
   const [cartItems, setCartItems] = useState<cartItem[]>(initialCartItems);
   const [user, setUser] = useState<User>();
   const itemsOnStorage = JSON.parse(localStorage.getItem("items"));
+  const [currentItem, setCurrentItem] = useState<item[]>(initialCurrentItem);
+  const navigate = useNavigate();
+
+  function goToItemPage(itemId: string) {
+    for (const collections of clothesCollection) {
+      const { items } = collections;
+      const foundItem = items.find((item) => item.id === itemId);
+      if (foundItem) {
+        localStorage.setItem("currentItem", JSON.stringify(foundItem));
+        setCurrentItem([foundItem]);
+      }
+    }
+    navigate(`/${itemId}`);
+  }
 
   function cauculateTotalPrice() {
     const totalValue = cartItems.reduce((acc, item) => {
@@ -142,11 +168,13 @@ export function ProviderItem({ children }: ProviderItemProps) {
     const storageItems = JSON.parse(localStorage.getItem("items"));
 
     setCartItems(storageItems);
+    toast.success("+1 adicionado ao carrinho");
   }
 
   function decreaseItem(itemId: string) {
     const nextCartItems = cartItems.map((item) => {
       if (item.id === itemId && item.quantity > 1) {
+        toast.success("-1 removido do carrinho");
         return {
           ...item,
           quantity: item.quantity - 1,
@@ -169,6 +197,8 @@ export function ProviderItem({ children }: ProviderItemProps) {
     user,
     authGoogle,
     totalPrice,
+    goToItemPage,
+    currentItem,
   };
 
   return (

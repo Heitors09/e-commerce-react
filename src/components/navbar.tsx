@@ -62,7 +62,7 @@ export function Navbar() {
   return (
     <div
       className="
-    drop-shadow-md w-[100%] sticky top-0 z-30 bg-white h-[75px] 2xl:px-5 2xl:justify-between xl:gap-72 gap-64 flex items-center font-light justify-center"
+    drop-shadow-md w-[100%] sticky top-0 z-30 bg-white h-[75px] 2xl:px-4 2xl:justify-between xl:gap-72 gap-64 flex items-center font-light justify-center"
     >
       <div className="flex items-center gap-3 relative">
         <Dialog.Root>
@@ -168,20 +168,29 @@ export function Navbar() {
                   {cartItems?.map((item) => (
                     <div
                       key={item.id}
-                      className="m-auto bg-white ring-slate-300 ring-2 w-[90%] rounded-md h-auto max-h-[150px] flex mb-2  items-center gap-2  font-Inter  mt-5"
+                      className="m-auto bg-white ring-black ring-1 w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5 px-5"
                     >
-                      <img className="w-[30%] rounded-md" src={item.url}></img>
-                      <div className="flex flex-col gap-3  justify-center">
-                        <h2>{item.Name}</h2>
-                        <h3>${item.price}</h3>
-                        <div className="font-light text-sm flex gap-1 items-center">
+                      <img
+                        className="w-[50%] h-[60%] rounded-md hover:-translate-y-1 duration-200 "
+                        src={item.url}
+                        onClick={() => provider.goToItemPage(item.id)}
+                      ></img>
+                      <div className="flex flex-col gap-1  justify-center">
+                        <h3
+                          className="text-sm font-bold hover:text-gray-500"
+                          onClick={() => provider.goToItemPage(item.id)}
+                        >
+                          {item.Name}
+                        </h3>
+                        <h3 className=" font-bold">${item.price},00</h3>
+                        <div className="font-medium text-sm flex gap-1 items-center">
                           <h3>amount:</h3>
-                          <p className="ring-1 rounded-full size-5 pl-1.5">
+                          <p className="ring-1 ring-green-400 rounded-full size-5 pl-1.5">
                             {item.quantity}
                           </p>
                           <button
                             onClick={() => provider?.deleteItem(item.id)}
-                            className="hover:text-red-500 duration-150"
+                            className="hover:text-red-500 duration-150  "
                           >
                             <Trash2Icon className="size-5 ml-12" />
                           </button>
@@ -190,15 +199,15 @@ export function Navbar() {
                     </div>
                   ))}
                   {cartItems.length > 0 ? (
-                    <div className="w-full h-20  flex flex-col gap-1 items-center justify-center bg-white">
+                    <div className="sticky bottom-0 w-full h-20  flex flex-col gap-1 items-center justify-center bg-white">
                       <div className="flex items-center gap-2">
                         <h2 className="font-medium font-Inter ">Total: </h2>
-                        <p className=" flex items-center justify-center font-bold">
-                          $ {provider?.totalPrice}
+                        <p className=" flex items-center justify-center font-bold text-lg">
+                          $ {provider?.totalPrice},00
                         </p>
                       </div>
                       <button
-                        className="bg-red-500 rounded-full w-20 text-white p-2 font-bold"
+                        className="bg-green-500 rounded-full w-20 text-white p-2 font-bold"
                         onClick={handleGoToCart}
                       >
                         Buy
