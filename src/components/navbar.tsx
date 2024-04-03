@@ -164,15 +164,18 @@ export function Navbar() {
               >
                 <div className="relative">
                   <Dialog.Trigger>
-                    <X className="m-3" />
+                    <div className="flex items-end w-[250px]  m-5 justify-between">
+                      <p className="font-medium text-lg">My Cart</p>
+                      <X className="font-medium text-stone-400" />
+                    </div>
                   </Dialog.Trigger>
                   {cartItems?.map((item) => (
                     <div
                       key={item.id}
-                      className="m-auto bg-white  w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5 px-5 drop-shadow-md"
+                      className="m-auto bg-white  w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5  drop-shadow-md"
                     >
                       <img
-                        className="size-12 object-contain  h-[55px] rounded-md  duration-200 hover:scale-95"
+                        className="size-12 object-contain  h-[55px] rounded-md  duration-200 hover:scale-95 ml-1"
                         src={item.url}
                         onClick={() => provider.goToItemPage(item.id)}
                       ></img>
@@ -187,26 +190,23 @@ export function Navbar() {
 
                         <div className="font-medium text-sm flex gap-2 items-center">
                           <h3>amount:</h3>
-                          <div className="flex gap-1 ring-1 p-2 rounded-md ring-black items-center h-[20px] w-auto ">
+                          <div className="flex gap-1 ring-1 p-2 rounded-md ring-black items-center h-[20px] w-16 justify-between ">
                             {item.quantity === 1 ? (
                               <button
                                 onClick={() => provider.deleteItem(item.id)}
-                                className=" p-2"
                               >
                                 -
                               </button>
                             ) : (
                               <button
                                 onClick={() => provider.decreaseItem(item.id)}
-                                className=" p-2"
                               >
                                 -
                               </button>
                             )}
-                            <span className="font-bold">{item.quantity}</span>
+                            <span className="font-bold  ">{item.quantity}</span>
                             <button
                               onClick={() => provider.increaseItem(item.id)}
-                              className=" p-2"
                             >
                               +
                             </button>
@@ -234,7 +234,7 @@ export function Navbar() {
                     <div className="sticky bg-stone-100 shadow-md bottom-0 w-full h-[100px] gap-2  flex flex-col  items-center justify-center ">
                       <div className="flex items-center gap-1 ">
                         <h2 className="font-medium font-Inter ">Total: </h2>
-                        <h3 className=" flex items-center justify-center font-bold ">
+                        <h3 className=" flex items-center justify-center font-medium ">
                           ${provider?.totalPrice},00
                         </h3>
                       </div>

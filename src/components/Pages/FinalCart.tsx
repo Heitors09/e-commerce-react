@@ -17,7 +17,7 @@ export function FinalCart() {
   return (
     <div className="flex items-start bg-slate-100 h-[100vh]">
       <div className="mt-[50px] flex flex-col items-center font-medium">
-        <div className="h-6 bg-white ring-1  m-[50px] ring-slate-200 w-[800px] flex justify-between px-7">
+        <div className="h-6 drop-shadow-md bg-white rounded-md  m-[50px] ring-slate-200 w-[800px] flex justify-between px-7">
           <p>Items</p>
           <ul className="flex gap-7">
             <li>amount</li>
@@ -27,7 +27,7 @@ export function FinalCart() {
         <div className=" w-[800px]  flex flex-col gap-2 ">
           {cartItems?.map((item) => (
             <div key={item.id} className="flex items-center gap-2">
-              <div className="flex h-20 min-w-[800px] bg-white items-center ring-1  ring-slate-200 justify-between">
+              <div className="flex h-20 min-w-[800px] bg-white items-center hover:bg-stone-100  drop-shadow-md rounded-md justify-between">
                 <div className="flex items-center font-medium gap-2 pl-2">
                   <img
                     className=" object-contain size-12 ring-1 hover:scale-95 duration-200 ring-slate-100 hover:cursor-pointer rounded-md drop-shadow-md"
@@ -39,21 +39,27 @@ export function FinalCart() {
                 </div>
                 <ul className="flex gap-6 px-4">
                   <li className="flex gap-3 ring-1 ring-black w-18 p-2 rounded-md  items-center h-6 ">
-                    <button onClick={() => provider?.decreaseItem(item.id)}>
-                      -
-                    </button>
-                    <span className="font-bold">{item.quantity}</span>
+                    {item.quantity === 1 ? (
+                      <button onClick={() => provider?.deleteItem(item.id)}>
+                        -
+                      </button>
+                    ) : (
+                      <button onClick={() => provider?.decreaseItem(item.id)}>
+                        -
+                      </button>
+                    )}
+                    <span className="font-medium">{item.quantity}</span>
                     <button onClick={() => provider?.increaseItem(item.id)}>
                       +
                     </button>
                   </li>
-                  <li className="font-bold w-14  flex justify-center">
+                  <li className="font-medium w-14  flex justify-center">
                     ${item.price * item.quantity}
                   </li>
                 </ul>
               </div>
               <button onClick={() => provider?.deleteItem(item.id)}>
-                <Trash2Icon className="text-black hover:text-red-500" />
+                <Trash2Icon className="text-black hover:text-[#126edb]" />
               </button>
             </div>
           ))}
@@ -64,7 +70,7 @@ export function FinalCart() {
           <ShoppingCart className="text-black  " />
           purchase summary
         </h2>
-        <div className="flex justify-between ring-1  px-5 ring-slate-200 bg-white font-medium">
+        <div className="flex justify-between drop-shadow-md rounded-md  px-5  bg-white font-medium">
           <h2>total</h2>
           <div className="flex gap-1">
             <p>$</p>
