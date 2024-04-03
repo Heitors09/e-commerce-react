@@ -8,7 +8,7 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Toaster } from "sonner";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-import paypalIcon from "../assets/PP_logo_h_100x26.png";
+
 import { motion } from "framer-motion";
 
 export function ItemPage() {
@@ -49,7 +49,6 @@ export function ItemPage() {
                     </div>
                     <div className="flex flex-col items-center gap-1 mt-2">
                       <div className="w-80 ring-1 bg-white ring-stone-200 h-12 rounded-md flex items-center px-5 justify-between">
-                        <img src={paypalIcon} alt="paypal icon" />
                         <p className="font-medium text-sm">
                           $ {storedItem.price},00
                         </p>
