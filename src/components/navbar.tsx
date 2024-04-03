@@ -175,7 +175,7 @@ export function Navbar() {
                       className="m-auto bg-white  w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5  drop-shadow-md"
                     >
                       <img
-                        className="size-12 object-contain  h-[55px] rounded-md  duration-200 hover:scale-95 ml-1"
+                        className="size-12 object-contain  h-[55px] rounded-md  duration-200 hover:scale-95 ml-5"
                         src={item.url}
                         onClick={() => provider.goToItemPage(item.id)}
                       ></img>
