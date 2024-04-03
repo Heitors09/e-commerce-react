@@ -136,7 +136,7 @@ export function Navbar() {
         ) : (
           <button
             onClick={provider?.authGoogle}
-            className="bg-red-500 h-[30px] w-[213px] text-white font-bold text-sm flex items-center gap-2 p-5 hover:opacity-90 rounded-md"
+            className="bg-[#126edb] h-[30px] w-[213px] text-white font-bold text-sm flex items-center gap-2 p-5 hover:opacity-90 rounded-md"
           >
             <img className="size-5" src={googleIcon} />{" "}
             <span>Log in with Google</span>
@@ -147,7 +147,7 @@ export function Navbar() {
           <Dialog.Trigger className="relative">
             <ShoppingCart className="text-slate-900 size-9" />
             {cartItems.length > 0 ? (
-              <div className="bg-red-500 size-5 rounded-full bottom-0  absolute duration-150 flex  justify-center">
+              <div className="bg-[#126edb] size-5 rounded-full bottom-0  absolute duration-150 flex  justify-center">
                 <p className="text-sm text-white">{cartItems.length}</p>
               </div>
             ) : (
@@ -159,6 +159,7 @@ export function Navbar() {
               <motion.div
                 initial={{ x: "90%" }}
                 animate={{ x: 0 }}
+                transition={{ type: "tween" }}
                 className="fixed z-30 top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 overflow-y-auto"
               >
                 <div className="relative">
@@ -168,38 +169,69 @@ export function Navbar() {
                   {cartItems?.map((item) => (
                     <div
                       key={item.id}
-                      className="m-auto bg-white ring-black ring-1 w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5 px-5"
+                      className="m-auto bg-white  w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5 px-5 drop-shadow-md"
                     >
                       <img
-                        className="w-[50%] h-[60%] rounded-md hover:-translate-y-1 duration-200 "
+                        className="size-12 object-contain  h-[55px] rounded-md  duration-200 hover:scale-95"
                         src={item.url}
                         onClick={() => provider.goToItemPage(item.id)}
                       ></img>
                       <div className="flex flex-col gap-1  justify-center">
                         <h3
-                          className="text-sm font-bold hover:text-gray-500"
+                          className="text-sm font-bold  hover:text-[#126edb]"
                           onClick={() => provider.goToItemPage(item.id)}
                         >
                           {item.Name}
                         </h3>
                         <h3 className=" font-bold">${item.price},00</h3>
-                        <div className="font-medium text-sm flex gap-1 items-center">
+
+                        <div className="font-medium text-sm flex gap-2 items-center">
                           <h3>amount:</h3>
-                          <p className="ring-1 ring-green-400 rounded-full size-5 pl-1.5">
-                            {item.quantity}
-                          </p>
+                          <div className="flex gap-1 ring-1 p-2 rounded-md ring-black items-center h-[20px] w-auto ">
+                            {item.quantity === 1 ? (
+                              <button
+                                onClick={() => provider.deleteItem(item.id)}
+                                className=" p-2"
+                              >
+                                -
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => provider.decreaseItem(item.id)}
+                                className=" p-2"
+                              >
+                                -
+                              </button>
+                            )}
+                            <span className="font-bold">{item.quantity}</span>
+                            <button
+                              onClick={() => provider.increaseItem(item.id)}
+                              className=" p-2"
+                            >
+                              +
+                            </button>
+                          </div>
+
                           <button
                             onClick={() => provider?.deleteItem(item.id)}
-                            className="hover:text-red-500 duration-150  "
+                            className="hover:text-[#126edb] duration-150  "
                           >
-                            <Trash2Icon className="size-5 ml-12" />
+                            <Trash2Icon className="size-5 " />
                           </button>
                         </div>
+                        {item.quantity > 1 && (
+                          <div className="flex gap-2 mt-1">
+                            <p>item total:</p>
+                            <h3 className=" font-bold   text-[#126edb]">
+                              ${item.price * item.quantity},00
+                            </h3>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
                   {cartItems.length > 0 ? (
-                    <div className="sticky bottom-0 w-full h-[100px] gap-2  flex flex-col  items-center justify-center bg-white">
+                    <div className="sticky bg-stone-100 shadow-md bottom-0 w-full h-[100px] gap-2  flex flex-col  items-center justify-center ">
                       <div className="flex items-center gap-1 ">
                         <h2 className="font-medium font-Inter ">Total: </h2>
                         <h3 className=" flex items-center justify-center font-bold ">
@@ -207,7 +239,7 @@ export function Navbar() {
                         </h3>
                       </div>
                       <button
-                        className="bg-black hover:bg-green-500 duration-200 rounded-full w-[150px] text-white p-2 font-bold"
+                        className="bg-[#126edb] hover:scale-95 duration-200 rounded-full w-[150px] text-white p-2 font-bold"
                         onClick={handleGoToCart}
                       >
                         Buy

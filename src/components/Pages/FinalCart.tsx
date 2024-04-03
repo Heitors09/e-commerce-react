@@ -15,29 +15,30 @@ export function FinalCart() {
   const cartItems = provider?.cartItems;
 
   return (
-    <div className="flex items-start bg-slate-100 min-h-[500px]">
-      <div className="mt-[100px]  flex flex-col items-center text-sm">
+    <div className="flex items-start bg-slate-100 h-[100vh]">
+      <div className="mt-[50px] flex flex-col items-center font-medium">
         <div className="h-6 bg-white ring-1  m-[50px] ring-slate-200 w-[800px] flex justify-between px-7">
-          <p>Itens</p>
+          <p>Items</p>
           <ul className="flex gap-7">
-            <li>Quantidade</li>
-            <li>Valor</li>
+            <li>amount</li>
+            <li>value</li>
           </ul>
         </div>
-        <div className=" w-[800px]  flex flex-col gap-2 mb-[20px]">
+        <div className=" w-[800px]  flex flex-col gap-2 ">
           {cartItems?.map((item) => (
             <div key={item.id} className="flex items-center gap-2">
               <div className="flex h-20 min-w-[800px] bg-white items-center ring-1  ring-slate-200 justify-between">
-                <div className="flex items-center">
+                <div className="flex items-center font-medium gap-2 pl-2">
                   <img
-                    className="p-2 size-20"
+                    className=" object-contain size-12 ring-1 hover:scale-95 duration-200 ring-slate-100 hover:cursor-pointer rounded-md drop-shadow-md"
                     src={item.url}
                     alt="item selecionado"
+                    onClick={() => provider.goToItemPage(item.id)}
                   />
                   <h3>{item.Name}</h3>
                 </div>
-                <ul className="flex gap-20 px-9">
-                  <li className="flex gap-3 ring-1 p-2 rounded-md ring-slate-200 items-center h-6 ">
+                <ul className="flex gap-6 px-4">
+                  <li className="flex gap-3 ring-1 ring-black w-18 p-2 rounded-md  items-center h-6 ">
                     <button onClick={() => provider?.decreaseItem(item.id)}>
                       -
                     </button>
@@ -46,7 +47,9 @@ export function FinalCart() {
                       +
                     </button>
                   </li>
-                  <li className="font-bold">${item.price * item.quantity}</li>
+                  <li className="font-bold w-14  flex justify-center">
+                    ${item.price * item.quantity}
+                  </li>
                 </ul>
               </div>
               <button onClick={() => provider?.deleteItem(item.id)}>
@@ -56,21 +59,21 @@ export function FinalCart() {
           ))}
         </div>
       </div>
-      <aside className="flex flex-col gap-4 mt-[120px] w-64">
-        <h2 className="flex gap-2 items-end justify-center">
-          <ShoppingCart className="text-black" />
-          Resumo da Compra
+      <aside className="flex flex-col gap-4 mt-[60px] w-64">
+        <h2 className="flex gap-2 items-end justify-center font-medium">
+          <ShoppingCart className="text-black  " />
+          purchase summary
         </h2>
-        <div className="flex justify-between ring-1  px-5 ring-slate-200 bg-white">
-          <h2>Valor</h2>
-          <p className="flex gap-1 font-bold">
+        <div className="flex justify-between ring-1  px-5 ring-slate-200 bg-white font-medium">
+          <h2>total</h2>
+          <div className="flex gap-1">
             <p>$</p>
             {provider?.totalPrice}
-          </p>
+          </div>
         </div>
-        <button className="bg-green-500 text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-8">
+        <button className="bg-[#126edb] group hover:scale-105 duration-200 text-white h-12 rounded-full font-bold text-sm flex items-center justify-center gap-8">
           <p>Go to Payment</p>
-          <ArrowRight className="size-5" />
+          <ArrowRight className="size-5 group-hover:translate-x-3 duration-200" />
         </button>
       </aside>
     </div>

@@ -136,7 +136,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
       const storageItems = JSON.parse(localStorage.getItem("items"));
 
       setCartItems(storageItems);
-      toast.success("+1 adicionado ao carrinho");
+      toast.success("+1 added to the cart");
       return;
     }
 
@@ -148,7 +148,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
         localStorage.setItem("items", JSON.stringify(updatedCartItems));
         const storageItems = JSON.parse(localStorage.getItem("items"));
         setCartItems(storageItems);
-        toast.success("novo item adicionado ao carrinho");
+        toast.success("new item added to the cart");
       }
     }
   }
@@ -168,13 +168,13 @@ export function ProviderItem({ children }: ProviderItemProps) {
     const storageItems = JSON.parse(localStorage.getItem("items"));
 
     setCartItems(storageItems);
-    toast.success("+1 adicionado ao carrinho");
+    toast.success("+1 added to the cart");
   }
 
   function decreaseItem(itemId: string) {
     const nextCartItems = cartItems.map((item) => {
       if (item.id === itemId && item.quantity > 1) {
-        toast.success("-1 removido do carrinho");
+        toast.success("-1 removed ");
         return {
           ...item,
           quantity: item.quantity - 1,

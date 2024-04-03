@@ -1,29 +1,20 @@
 import { useContext } from "react";
 import { ItemsContext } from "../Context/ProviderItem";
-import { Wallet } from "lucide-react";
+import { CreditCard } from "lucide-react";
 import { Plus } from "lucide-react";
 import { Heart } from "lucide-react";
 import { useScrollReset } from "../hooks/useScrollReset";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Toaster } from "sonner";
+import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
+import paypalIcon from "../assets/PP_logo_h_100x26.png";
+import { motion } from "framer-motion";
 
 export function ItemPage() {
   useScrollReset();
   const provider = useContext(ItemsContext);
   const storedItem = JSON.parse(localStorage.getItem("currentItem"));
-  const cartItems = provider.cartItems;
-
-  function findItemQuantity() {
-    const foundItem = cartItems.find((item) => item.id === storedItem.id);
-
-    if (foundItem && foundItem.quantity !== undefined) {
-      return foundItem.quantity;
-    }
-
-    return 0;
-  }
-
-  const itemQuantity = findItemQuantity();
 
   return (
     <div className="flex flex-col items-center">
@@ -32,15 +23,52 @@ export function ItemPage() {
         <div className="h-[400px] w-[300px] mr-1">
           <img src={storedItem.url} className="size-[100%] rounded-l-md " />
         </div>
-        <aside className=" w-[450px] h-[400px] p-1/2 flex px-5 rounded-r-md bg-stone-100 drop-shadow-md">
-          <div className="flex flex-col gap-2 mt-5">
-            <h3 className="flex gap-1 font-bold  text-xl items-start">
-              <span className="flex text-black">
-                <Wallet />
-              </span>
+        <aside className="w-[450px] h-[400px] p-1/2 flex px-5 rounded-r-md bg-stone-100 drop-shadow-md">
+          <div className="flex flex-col gap-2 mt-5 ">
+            <h3 className="flex gap-1 font-bold  text-2xl items-center">
               $ {storedItem.price},00
             </h3>
-            <p className="font-light mt-7">size:</p>
+            <Dialog.Root>
+              <Dialog.Trigger className="ring-1 w-40 flex items-center justify-center gap-1 text-sm font-light ring-black">
+                <Plus className="size-3" />
+                <p className="font-medium">payment methods</p>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Content className="absolute top-[35%] left-[35%]">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "tween" }}
+                    className="h-[300px] w-[400px] bg-stone-100 rounded-md overflow-hidden"
+                  >
+                    <div className="flex items-center justify-between px-5 py-2">
+                      <p className="font-medium text-lg">Payment methods</p>
+                      <Dialog.Trigger>
+                        <X className="size-7 text-stone-300" />
+                      </Dialog.Trigger>
+                    </div>
+                    <div className="flex flex-col items-center gap-1 mt-2">
+                      <div className="w-80 ring-1 bg-white ring-stone-200 h-12 rounded-md flex items-center px-5 justify-between">
+                        <img src={paypalIcon} alt="paypal icon" />
+                        <p className="font-medium text-sm">
+                          $ {storedItem.price},00
+                        </p>
+                      </div>
+                      <div className="w-80 ring-1 bg-white ring-stone-200 h-12 rounded-md flex items-center px-5 justify-between">
+                        <p className="flex gap-1">
+                          <CreditCard />{" "}
+                          <span className="font-medium">Credit Card</span>
+                        </p>
+                        <p className="font-medium text-sm">
+                          $ {storedItem.price},00
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
+            <p className="font-light">size:</p>
             <div className="flex gap-2 font-light">
               <button className="ring-1 ring-gray-400 hover:ring-black hover:font-medium rounded-md h-9 w-8">
                 P
@@ -56,40 +84,9 @@ export function ItemPage() {
               </button>
             </div>
             <div className="flex items-center gap-3 mt-5">
-              {itemQuantity ? (
-                <div className="flex gap-3 ring-1 p-2 rounded-md ring-black items-center h-[40px] w-16 ">
-                  <button onClick={() => provider.decreaseItem(storedItem.id)}>
-                    -
-                  </button>
-                  <span className="font-bold">{itemQuantity}</span>
-                  <button onClick={() => provider.increaseItem(storedItem.id)}>
-                    +
-                  </button>
-                </div>
-              ) : (
-                <div className="flex gap-3 ring-1 p-2 rounded-md ring-gray-400 items-center h-[40px] w-16 ">
-                  <button
-                    onClick={() => provider.decreaseItem(storedItem.id)}
-                    disabled={!itemQuantity}
-                    className="text-gray-400"
-                  >
-                    -
-                  </button>
-                  <span className="font-bold text-gray-400">
-                    {itemQuantity}
-                  </span>
-                  <button
-                    onClick={() => provider.increaseItem(storedItem.id)}
-                    disabled={!itemQuantity}
-                    className="text-gray-400"
-                  >
-                    +
-                  </button>
-                </div>
-              )}
               <button
                 onClick={() => provider.addItem(storedItem.id)}
-                className="w-[300px] text-xl h-[40px] bg-green-600 text-white font-bold rounded-md"
+                className="w-[300px] text-xl h-[40px] bg-[#126edb] hover:scale-95 duration-200 text-white font-bold rounded-md"
               >
                 Buy
               </button>
