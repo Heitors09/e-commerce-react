@@ -15,6 +15,7 @@ export function ItemPage() {
   useScrollReset();
   const provider = useContext(ItemsContext);
   const storedItem = JSON.parse(localStorage.getItem("currentItem"));
+  const clothesSize = provider.clothesSize;
 
   return (
     <div className="flex flex-col items-center">
@@ -69,23 +70,35 @@ export function ItemPage() {
             </Dialog.Root>
             <p className="font-light">size:</p>
             <div className="flex gap-2 font-light">
-              <button className="ring-1 ring-gray-400 hover:ring-[#126edb] hover:font-medium hover:text-[#126edb] rounded-md h-9 w-8">
+              <button
+                onClick={() => provider.defineClothesSize("S")}
+                className="ring-1 ring-gray-400  focus:ring-[#126edb] focus:ring-2 focus:font-medium focus:text-[#126edb] rounded-md h-9 w-8"
+              >
                 S
               </button>
-              <button className="ring-1 ring-gray-400 hover:ring-[#126edb] hover:font-medium hover:text-[#126edb] rounded-md h-9 w-8">
+              <button
+                onClick={() => provider.defineClothesSize("M")}
+                className="ring-1 ring-gray-400  focus:ring-[#126edb] focus:ring-2 focus:font-medium focus:text-[#126edb] rounded-md h-9 w-8"
+              >
                 M
               </button>
-              <button className="ring-1 ring-gray-400 hover:ring-[#126edb] hover:font-medium hover:text-[#126edb] rounded-md h-9 w-8">
+              <button
+                onClick={() => provider.defineClothesSize("L")}
+                className="ring-1 ring-gray-400  focus:ring-[#126edb] focus:ring-2 focus:font-medium focus:text-[#126edb] rounded-md h-9 w-8"
+              >
                 L
               </button>
-              <button className="ring-1 ring-gray-400 hover:ring-[#126edb] hover:font-medium hover:text-[#126edb] rounded-md h-9 w-8">
+              <button
+                onClick={() => provider.defineClothesSize("XL")}
+                className="ring-1 ring-gray-400  focus:ring-[#126edb] focus:ring-2 focus:font-medium focus:text-[#126edb] rounded-md h-9 w-8"
+              >
                 XL
               </button>
             </div>
             <div className="flex items-center gap-3 mt-5">
               <button
-                onClick={() => provider.addItem(storedItem.id)}
-                className="w-[300px] text-xl h-[40px] bg-[#126edb] hover:scale-95 duration-200 text-white font-bold rounded-md"
+                onClick={() => provider.addItem(storedItem.id, clothesSize)}
+                className="w-[300px] text-xl h-[40px] bg-[#126edb]  hover:opacity-90 duration-200 text-white font-bold rounded-md"
               >
                 Buy
               </button>

@@ -41,12 +41,6 @@ export function Lightjackets() {
               <p>{clothes.Name}</p>
               <div className="flex justify-between">
                 <footer className="  text-xl p-1">${clothes.price}</footer>
-                <button
-                  className="w-12 text-white bg-black "
-                  onClick={() => provider?.addItem(clothes.id)}
-                >
-                  Buy
-                </button>
               </div>
             </div>
           ))}

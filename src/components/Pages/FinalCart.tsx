@@ -35,21 +35,34 @@ export function FinalCart() {
                     alt="item selecionado"
                     onClick={() => provider.goToItemPage(item.id)}
                   />
-                  <h3>{item.Name}</h3>
+                  <div>
+                    <h3>{item.Name}</h3>
+                    <footer className="text-[#878787] font-light">
+                      size {item.size}
+                    </footer>
+                  </div>
                 </div>
                 <ul className="flex gap-6 px-4">
                   <li className="flex gap-3 ring-1 ring-black w-18 p-2 rounded-md  items-center h-6 ">
                     {item.quantity === 1 ? (
-                      <button onClick={() => provider?.deleteItem(item.id)}>
+                      <button
+                        onClick={() => provider?.deleteItem(item.id, item.size)}
+                      >
                         -
                       </button>
                     ) : (
-                      <button onClick={() => provider?.decreaseItem(item.id)}>
+                      <button
+                        onClick={() =>
+                          provider?.decreaseItem(item.id, item.size)
+                        }
+                      >
                         -
                       </button>
                     )}
                     <span className="font-medium">{item.quantity}</span>
-                    <button onClick={() => provider?.increaseItem(item.id)}>
+                    <button
+                      onClick={() => provider?.increaseItem(item.id, item.size)}
+                    >
                       +
                     </button>
                   </li>
@@ -58,7 +71,7 @@ export function FinalCart() {
                   </li>
                 </ul>
               </div>
-              <button onClick={() => provider?.deleteItem(item.id)}>
+              <button onClick={() => provider?.deleteItem(item.id, item.size)}>
                 <Trash2Icon className="text-black hover:text-[#126edb]" />
               </button>
             </div>

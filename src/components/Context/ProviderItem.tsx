@@ -7,15 +7,17 @@ import { useNavigate } from "react-router-dom";
 
 type ItemsContextType = {
   cartItems: cartItem[];
-  addItem: (itemId: string) => void;
-  decreaseItem: (itemId: string) => void;
-  increaseItem: (itemId: string) => void;
-  deleteItem: (itemId: string) => void;
+  addItem: (itemId: string, size: string) => void;
+  decreaseItem: (itemId: string, size: string) => void;
+  increaseItem: (itemId: string, size: string) => void;
+  deleteItem: (itemId: string, size: string) => void;
   user: User | undefined;
   authGoogle: () => Promise<void>;
   totalPrice: number;
   goToItemPage: (itemId: string) => void;
   currentItem: item[];
+  defineClothesSize: (size: string) => void;
+  clothesSize: string;
 };
 
 export const ItemsContext = createContext<ItemsContextType | null>(null);
@@ -37,6 +39,7 @@ type item = {
   id: string;
   url: string;
   price: number;
+  size?: string;
   quantity?: number;
 };
 
@@ -52,6 +55,7 @@ type cartItem = {
   url: string;
   price: number;
   promotion?: boolean;
+  size: string;
   quantity: number;
 };
 
@@ -64,6 +68,11 @@ export function ProviderItem({ children }: ProviderItemProps) {
   const itemsOnStorage = JSON.parse(localStorage.getItem("items"));
   const [currentItem, setCurrentItem] = useState<item[]>(initialCurrentItem);
   const navigate = useNavigate();
+  const [clothesSize, setClothesSize] = useState("");
+
+  function defineClothesSize(itemSize: string) {
+    setClothesSize(itemSize);
+  }
 
   function goToItemPage(itemId: string) {
     for (const collections of clothesCollection) {
@@ -74,6 +83,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
         setCurrentItem([foundItem]);
       }
     }
+
     navigate(`/${itemId}`);
   }
 
@@ -116,25 +126,30 @@ export function ProviderItem({ children }: ProviderItemProps) {
     }
   }
 
-  function deleteItem(itemId: string) {
-    const deletedItems = cartItems.filter((item) => item.id !== itemId);
+  function deleteItem(itemId: string, size: string) {
+    const deletedItems = cartItems.filter(
+      (item) => !(item.id === itemId && item.size === size)
+    );
     localStorage.setItem("items", JSON.stringify(deletedItems));
     const deletedStorage = JSON.parse(localStorage.getItem("items"));
     setCartItems(deletedStorage);
   }
 
-  function addItem(itemId: string) {
-    if (cartItems === null) {
-      console.error("cartItems permanece null");
+  function addItem(itemId: string, size: string) {
+    if (!clothesSize) {
+      toast("plese select a size");
+      return;
     }
 
-    const existingItemIndex = cartItems.findIndex((item) => item.id === itemId);
+    const existingItemIndex = cartItems.findIndex(
+      (item) => item.id === itemId && item.size === size
+    );
     if (existingItemIndex !== -1) {
       const updatedCartItems = [...cartItems];
       updatedCartItems[existingItemIndex].quantity += 1;
       localStorage.setItem("items", JSON.stringify(updatedCartItems));
       const storageItems = JSON.parse(localStorage.getItem("items"));
-
+      setClothesSize("");
       setCartItems(storageItems);
       toast.success("+1 added to the cart");
       return;
@@ -144,18 +159,22 @@ export function ProviderItem({ children }: ProviderItemProps) {
       const { items } = collection;
       const newItem = items.find((item) => item.id === itemId);
       if (newItem) {
-        const updatedCartItems = [...cartItems, { ...newItem, quantity: 1 }];
+        const updatedCartItems = [
+          ...cartItems,
+          { ...newItem, quantity: 1, size: size },
+        ];
         localStorage.setItem("items", JSON.stringify(updatedCartItems));
         const storageItems = JSON.parse(localStorage.getItem("items"));
         setCartItems(storageItems);
+        setClothesSize("");
         toast.success("new item added to the cart");
       }
     }
   }
 
-  function increaseItem(itemId: string) {
+  function increaseItem(itemId: string, size: string) {
     const nextCartItems = cartItems.map((item) => {
-      if (item.id === itemId) {
+      if (item.id === itemId && item.size === size) {
         return {
           ...item,
           quantity: item.quantity + 1,
@@ -171,9 +190,9 @@ export function ProviderItem({ children }: ProviderItemProps) {
     toast.success("+1 added to the cart");
   }
 
-  function decreaseItem(itemId: string) {
+  function decreaseItem(itemId: string, size: string) {
     const nextCartItems = cartItems.map((item) => {
-      if (item.id === itemId && item.quantity > 1) {
+      if (item.id === itemId && item.quantity > 1 && item.size === size) {
         toast.success("-1 removed ");
         return {
           ...item,
@@ -199,6 +218,8 @@ export function ProviderItem({ children }: ProviderItemProps) {
     totalPrice,
     goToItemPage,
     currentItem,
+    defineClothesSize,
+    clothesSize,
   };
 
   return (

@@ -62,7 +62,7 @@ export function Navbar() {
   return (
     <div
       className="
-    drop-shadow-md w-[100%] sticky top-0 z-30 bg-white h-[75px] 2xl:px-4 2xl:justify-between xl:gap-72 gap-64 flex items-center font-light justify-center"
+    drop-shadow-md  w-[100%] sticky top-0 z-30 bg-white h-[75px] 2xl:px-4 2xl:justify-between xl:gap-72 gap-64 flex items-center font-light justify-center"
     >
       <div className="flex items-center gap-3 relative">
         <Dialog.Root>
@@ -186,41 +186,52 @@ export function Navbar() {
                         >
                           {item.Name}
                         </h3>
-                        <h3 className=" font-bold">${item.price},00</h3>
 
+                        <h3 className="font-bold">${item.price},00</h3>
+                        <footer className="text-[#878787] font-light">
+                          size {item.size}
+                        </footer>
                         <div className="font-medium text-sm flex gap-2 items-center">
                           <h3>amount:</h3>
                           <div className="flex gap-1 ring-1 p-2 rounded-md ring-black items-center h-[20px] w-16 justify-between ">
                             {item.quantity === 1 ? (
                               <button
-                                onClick={() => provider.deleteItem(item.id)}
+                                onClick={() =>
+                                  provider.deleteItem(item.id, item.size)
+                                }
                               >
                                 -
                               </button>
                             ) : (
                               <button
-                                onClick={() => provider.decreaseItem(item.id)}
+                                onClick={() =>
+                                  provider.decreaseItem(item.id, item.size)
+                                }
                               >
                                 -
                               </button>
                             )}
                             <span className="font-bold  ">{item.quantity}</span>
                             <button
-                              onClick={() => provider.increaseItem(item.id)}
+                              onClick={() =>
+                                provider.increaseItem(item.id, item.size)
+                              }
                             >
                               +
                             </button>
                           </div>
 
                           <button
-                            onClick={() => provider?.deleteItem(item.id)}
+                            onClick={() =>
+                              provider?.deleteItem(item.id, item.size)
+                            }
                             className="hover:text-[#126edb] duration-150  "
                           >
                             <Trash2Icon className="size-5 " />
                           </button>
                         </div>
                         {item.quantity > 1 && (
-                          <div className="flex gap-2 mt-1">
+                          <div className="flex gap-2 ">
                             <p>item total:</p>
                             <h3 className=" font-bold   text-[#126edb]">
                               ${item.price * item.quantity},00
@@ -242,7 +253,7 @@ export function Navbar() {
                         className="bg-[#126edb] hover:scale-95 duration-200 rounded-full w-[150px] text-white p-2 font-bold"
                         onClick={handleGoToCart}
                       >
-                        Buy
+                        Checkout
                       </button>
                     </div>
                   ) : (
