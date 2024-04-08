@@ -4,6 +4,7 @@ import { auth } from "../services/firebase";
 import { toast } from "sonner";
 import { clothesCollection } from "../data/data";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 type ItemsContextType = {
   cartItems: cartItem[];
@@ -57,6 +58,7 @@ type cartItem = {
   promotion?: boolean;
   size: string;
   quantity: number;
+  purchaseId: string;
 };
 
 const initialCartItems: cartItem[] = [];
@@ -73,6 +75,18 @@ export function ProviderItem({ children }: ProviderItemProps) {
   function defineClothesSize(itemSize: string) {
     setClothesSize(itemSize);
   }
+
+  useEffect(() => {
+    function storageToCart() {
+      if (itemsOnStorage) {
+        setCartItems(itemsOnStorage);
+        return;
+      }
+      setCartItems([]);
+    }
+
+    storageToCart();
+  }, []);
 
   function goToItemPage(itemId: string) {
     for (const collections of clothesCollection) {
@@ -97,18 +111,6 @@ export function ProviderItem({ children }: ProviderItemProps) {
 
   const totalPrice = cauculateTotalPrice();
 
-  useEffect(() => {
-    function storageToCart() {
-      if (itemsOnStorage) {
-        setCartItems(itemsOnStorage);
-        return;
-      }
-      setCartItems([]);
-    }
-
-    storageToCart();
-  }, []);
-
   async function authGoogle() {
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
@@ -130,6 +132,7 @@ export function ProviderItem({ children }: ProviderItemProps) {
     const deletedItems = cartItems.filter(
       (item) => !(item.id === itemId && item.size === size)
     );
+
     localStorage.setItem("items", JSON.stringify(deletedItems));
     const deletedStorage = JSON.parse(localStorage.getItem("items"));
     setCartItems(deletedStorage);
@@ -148,9 +151,8 @@ export function ProviderItem({ children }: ProviderItemProps) {
       const updatedCartItems = [...cartItems];
       updatedCartItems[existingItemIndex].quantity += 1;
       localStorage.setItem("items", JSON.stringify(updatedCartItems));
-      const storageItems = JSON.parse(localStorage.getItem("items"));
       setClothesSize("");
-      setCartItems(storageItems);
+      setCartItems(updatedCartItems);
       toast.success("+1 added to the cart");
       return;
     }
@@ -161,11 +163,11 @@ export function ProviderItem({ children }: ProviderItemProps) {
       if (newItem) {
         const updatedCartItems = [
           ...cartItems,
-          { ...newItem, quantity: 1, size: size },
+          { ...newItem, quantity: 1, size: size, purchaseId: uuidv4() },
         ];
         localStorage.setItem("items", JSON.stringify(updatedCartItems));
-        const storageItems = JSON.parse(localStorage.getItem("items"));
-        setCartItems(storageItems);
+
+        setCartItems(updatedCartItems);
         setClothesSize("");
         toast.success("new item added to the cart");
       }
@@ -184,9 +186,8 @@ export function ProviderItem({ children }: ProviderItemProps) {
       }
     });
     localStorage.setItem("items", JSON.stringify(nextCartItems));
-    const storageItems = JSON.parse(localStorage.getItem("items"));
 
-    setCartItems(storageItems);
+    setCartItems(nextCartItems);
     toast.success("+1 added to the cart");
   }
 
@@ -203,8 +204,8 @@ export function ProviderItem({ children }: ProviderItemProps) {
       }
     });
     localStorage.setItem("items", JSON.stringify(nextCartItems));
-    const storageItems = JSON.parse(localStorage.getItem("items"));
-    setCartItems(storageItems);
+
+    setCartItems(nextCartItems);
   }
 
   const contextValue = {

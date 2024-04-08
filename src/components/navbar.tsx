@@ -155,12 +155,13 @@ export function Navbar() {
             )}
           </Dialog.Trigger>
           <Dialog.Portal>
+            <Dialog.Overlay className="inset-0 fixed bg-black/50" />
             <Dialog.Content>
               <motion.div
                 initial={{ x: "90%" }}
                 animate={{ x: 0 }}
                 transition={{ type: "tween" }}
-                className="fixed z-30 top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 overflow-y-auto"
+                className="fixed  z-30 top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 overflow-y-auto"
               >
                 <div className="relative">
                   <Dialog.Trigger>
@@ -171,7 +172,7 @@ export function Navbar() {
                   </Dialog.Trigger>
                   {cartItems?.map((item) => (
                     <div
-                      key={item.id}
+                      key={item.purchaseId}
                       className="m-auto bg-white  w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5  drop-shadow-md"
                     >
                       <img
@@ -242,7 +243,7 @@ export function Navbar() {
                     </div>
                   ))}
                   {cartItems.length > 0 ? (
-                    <div className="sticky bg-stone-100 shadow-md bottom-0 w-full h-[100px] gap-2  flex flex-col  items-center justify-center ">
+                    <div className="fixed bottom-0 bg-stone-100 shadow-md w-full h-[100px] gap-2  flex flex-col  items-center justify-center ">
                       <div className="flex items-center gap-1 ">
                         <h2 className="font-medium font-Inter ">Total: </h2>
                         <h3 className=" flex items-center justify-center font-medium ">
