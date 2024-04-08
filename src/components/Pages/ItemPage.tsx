@@ -43,7 +43,7 @@ export function ItemPage() {
                     className="h-[300px] w-[400px] bg-stone-100 rounded-md overflow-hidden"
                   >
                     <div className="flex items-center justify-between px-5 py-2">
-                      <p className="font-medium text-lg">Payment methods</p>
+                      <p className="font-medium text-lg ">Payment methods</p>
                       <Dialog.Trigger>
                         <X className="size-7 text-stone-300" />
                       </Dialog.Trigger>
@@ -98,7 +98,7 @@ export function ItemPage() {
             <div className="flex items-center gap-3 mt-5">
               <button
                 onClick={() => provider.addItem(storedItem.id, clothesSize)}
-                className="w-[300px] text-xl h-[40px] bg-[#126edb]  hover:opacity-90 duration-200 text-white font-bold rounded-md"
+                className="w-[300px] text-xl h-[40px] bg-[#126edb] shadow-[0_4px_8px_rgba(0, 0, 0, 0.2)]  hover:brightness-90 duration-150 text-white font-bold rounded-md"
               >
                 Buy
               </button>

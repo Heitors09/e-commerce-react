@@ -104,13 +104,13 @@ export function Navbar() {
             {resultItems && searchItem ? (
               resultItems.map((item) => (
                 <li key={item.id}>
-                  <Link
-                    to="/"
-                    className="drop-shadow-md h-12  flex items-center gap-2 w-full duration-20it0 hover:bg-stone-200 rounded-md"
-                  >
-                    <img src={item.url} className="size-12 rounded-l-md" />
+                  <div className="drop-shadow-md h-12  flex items-center gap-2 w-full duration-200 hover:bg-stone-200 rounded-md">
+                    <img
+                      src={item.url}
+                      className=" size-12 max-w-10 rounded-l-md object-contain"
+                    />
                     <p>{item.Name}</p>
-                  </Link>
+                  </div>
                 </li>
               ))
             ) : (
@@ -154,6 +154,7 @@ export function Navbar() {
               <div className="bg-transparent size-3 bottom-0 rounded-full absolute duration-150" />
             )}
           </Dialog.Trigger>
+          <Dialog.Overlay className="inset-0 fixed bg-black/50" />
           <Dialog.Portal>
             <Dialog.Overlay className="inset-0 fixed bg-black/50" />
             <Dialog.Content>
@@ -161,91 +162,97 @@ export function Navbar() {
                 initial={{ x: "90%" }}
                 animate={{ x: 0 }}
                 transition={{ type: "tween" }}
-                className="fixed  z-30 top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 overflow-y-auto"
+                className="fixed  z-30 top-0 right-0 h-full rounded-md w-[300px] bg-slate-100 "
               >
-                <div className="relative">
+                <div className="relative h-[90%] overflow-y-auto ">
                   <Dialog.Trigger>
                     <div className="flex items-end w-[250px]  m-5 justify-between">
                       <p className="font-medium text-lg">My Cart</p>
                       <X className="font-medium text-stone-400" />
                     </div>
                   </Dialog.Trigger>
-                  {cartItems?.map((item) => (
-                    <div
-                      key={item.purchaseId}
-                      className="m-auto bg-white  w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-2  items-center gap-3  font-Inter  mt-5  drop-shadow-md"
-                    >
-                      <img
-                        className="size-12 object-contain  h-[55px] rounded-md  duration-200 hover:scale-95 ml-5"
-                        src={item.url}
-                        onClick={() => provider.goToItemPage(item.id)}
-                      ></img>
-                      <div className="flex flex-col gap-1  justify-center">
-                        <h3
-                          className="text-sm font-bold  hover:text-[#126edb]"
+                  <div className=" mb-7">
+                    {cartItems?.map((item) => (
+                      <div
+                        key={item.purchaseId}
+                        className="m-auto bg-white  w-[90%] rounded-md hover:bg-stone-100 hover:cursor-pointer  h-[130px] flex mb-3  items-center gap-3  font-Inter    drop-shadow-md"
+                      >
+                        <img
+                          className="size-12 object-contain  h-[55px] rounded-md  duration-200 hover:scale-95 ml-5"
+                          src={item.url}
                           onClick={() => provider.goToItemPage(item.id)}
-                        >
-                          {item.Name}
-                        </h3>
+                        ></img>
+                        <div className="flex flex-col gap-1  justify-center">
+                          <h3
+                            className="text-sm font-bold  hover:text-[#126edb]"
+                            onClick={() => provider.goToItemPage(item.id)}
+                          >
+                            {item.Name}
+                          </h3>
 
-                        <h3 className="font-bold">${item.price},00</h3>
-                        <footer className="text-[#878787] font-light">
-                          size {item.size}
-                        </footer>
-                        <div className="font-medium text-sm flex gap-2 items-center">
-                          <h3>amount:</h3>
-                          <div className="flex gap-1 ring-1 p-2 rounded-md ring-black items-center h-[20px] w-16 justify-between ">
-                            {item.quantity === 1 ? (
+                          <h3 className="font-bold">${item.price},00</h3>
+                          <footer className="text-[#878787] font-light">
+                            size {item.size}
+                          </footer>
+                          <div className="font-medium text-sm flex gap-2 items-center">
+                            <h3>amount:</h3>
+                            <div className="flex gap-1 ring-1 p-2 rounded-md ring-black items-center h-[20px] w-16 justify-between ">
+                              {item.quantity === 1 ? (
+                                <button
+                                  onClick={() =>
+                                    provider.deleteItem(item.id, item.size)
+                                  }
+                                >
+                                  -
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={() =>
+                                    provider.decreaseItem(item.id, item.size)
+                                  }
+                                >
+                                  -
+                                </button>
+                              )}
+                              <span className="font-bold  ">
+                                {item.quantity}
+                              </span>
                               <button
                                 onClick={() =>
-                                  provider.deleteItem(item.id, item.size)
+                                  provider.increaseItem(item.id, item.size)
                                 }
                               >
-                                -
+                                +
                               </button>
-                            ) : (
-                              <button
-                                onClick={() =>
-                                  provider.decreaseItem(item.id, item.size)
-                                }
-                              >
-                                -
-                              </button>
-                            )}
-                            <span className="font-bold  ">{item.quantity}</span>
+                            </div>
+
                             <button
                               onClick={() =>
-                                provider.increaseItem(item.id, item.size)
+                                provider?.deleteItem(item.id, item.size)
                               }
+                              className="hover:text-[#126edb] duration-150  "
                             >
-                              +
+                              <Trash2Icon className="size-5 " />
                             </button>
                           </div>
-
-                          <button
-                            onClick={() =>
-                              provider?.deleteItem(item.id, item.size)
-                            }
-                            className="hover:text-[#126edb] duration-150  "
-                          >
-                            <Trash2Icon className="size-5 " />
-                          </button>
+                          {item.quantity > 1 && (
+                            <div className="flex gap-2 ">
+                              <p>item total:</p>
+                              <h3 className=" font-bold   text-[#126edb]">
+                                ${item.price * item.quantity},00
+                              </h3>
+                            </div>
+                          )}
                         </div>
-                        {item.quantity > 1 && (
-                          <div className="flex gap-2 ">
-                            <p>item total:</p>
-                            <h3 className=" font-bold   text-[#126edb]">
-                              ${item.price * item.quantity},00
-                            </h3>
-                          </div>
-                        )}
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                   {cartItems.length > 0 ? (
                     <div className="fixed bottom-0 bg-stone-100 shadow-md w-full h-[100px] gap-2  flex flex-col  items-center justify-center ">
                       <div className="flex items-center gap-1 ">
-                        <h2 className="font-medium font-Inter ">Total: </h2>
+                        <h2 className="font-medium text-sm font-Inter ">
+                          Total:{" "}
+                        </h2>
                         <h3 className=" flex items-center justify-center font-medium ">
                           ${provider?.totalPrice},00
                         </h3>
