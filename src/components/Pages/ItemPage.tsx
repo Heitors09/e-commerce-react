@@ -98,7 +98,7 @@ export function ItemPage() {
             <div className="flex items-center gap-3 mt-5">
               <button
                 onClick={() => provider.addItem(storedItem.id, clothesSize)}
-                className="w-[300px] text-xl h-[40px] bg-[#126edb] shadow-[0_4px_8px_rgba(0, 0, 0, 0.2)]  hover:brightness-90 duration-150 text-white font-bold rounded-md"
+                className="w-[300px] text-xl h-[40px] bg-[#126edb] shadow-[0_4px_8px_rgba(0,0,0,0.2)]  hover:brightness-90 duration-150 text-white font-bold rounded-md"
               >
                 Buy
               </button>
